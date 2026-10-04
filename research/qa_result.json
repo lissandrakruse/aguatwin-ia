@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "independent_python_predictions_checked": 240,
+  "max_score_error": 7.771561172376096e-16,
+  "checks": [
+    "shared spatial groups",
+    "authentic outcome labels",
+    "Python-to-browser model inference",
+    "out-of-fold selected-record display",
+    "candidate domain and ranking",
+    "water and salt balance",
+    "NASA valid response and retained state on failure",
+    "NASA units and daily completeness",
+    "WebMCP valid/invalid action contracts",
+    "task switching and downloads"
+  ],
+  "environment": "jsdom DOM execution and native canvas; full browser layout not tested; WebMCP context stubbed"
+}

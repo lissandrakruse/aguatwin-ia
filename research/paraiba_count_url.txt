@@ -1,0 +1,1 @@
+https://geoportal.sgb.gov.br/server/rest/services/Hosted/siagas_web/FeatureServer/1/query?where=str_uf%3D%27PB%27+AND+str_natureza_ponto%3D%27Po%C3%A7o+tubular%27+AND+num_condutividade_eletrica%3E0+AND+num_profundidade%3E0&returnCountOnly=true&f=json
