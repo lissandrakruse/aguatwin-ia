@@ -1,0 +1,16 @@
+{
+  "name": "aguatwin-ia",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Exploratory Paraiba well and water-treatment simulator",
+  "scripts": {
+    "test": "node research/verify_ai.cjs"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "jsdom": "30.1.2",
+    "@napi-rs/canvas": "0.1.100"
+  }
+}
