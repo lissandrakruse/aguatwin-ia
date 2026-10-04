@@ -53,6 +53,7 @@ Requer Python 3.12. Os dois arquivos de dados preparados estão em `research/par
 
 ```sh
 python3 -m venv .venv
+source .venv/bin/activate
 python3 -m pip install -r requirements.txt
 OPENBLAS_NUM_THREADS=1 python3 research/compare_five_models.py
 OPENBLAS_NUM_THREADS=1 python3 research/reference_predictions.py
@@ -65,6 +66,17 @@ Para fazer uma nova consulta ao cadastro, execute `fetch_paraiba.py`, `prepare_s
 ## Verificação realizada
 
 O protótipo passou por verificação numérica dos gradientes da CNN, comparação de **240 previsões** entre Python e JavaScript, testes de conservação de água e sais, domínio geográfico dos candidatos, respostas NASA válidas e inválidas e ações WebMCP. O ambiente de verificação usou DOM e canvas nativo; não constitui validação hidrogeológica nem teste de campo. Veja `research/qa_result.json`.
+
+### Reproduzir a verificação em JavaScript
+
+Com Node.js 22.12 ou superior e npm:
+
+```sh
+npm install
+npm test
+```
+
+O teste executa os casos numéricos no DOM, compara as referências Python exportadas e usa respostas NASA controladas para avaliar sucesso e falha. Ele não substitui teste visual em navegador nem validação de campo. Para regenerar as referências antes do teste, execute `research/reference_predictions.py` com as dependências Python instaladas.
 
 ## Hipótese de contribuição para o mestrado
 
