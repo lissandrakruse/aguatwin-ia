@@ -14,6 +14,6 @@ Os pontos azuis são uma grade de hipóteses, ordenada pelo Random Forest treina
 
 Municípios aparecem por terem registros disponíveis, e não porque já foi demonstrada viabilidade de novos poços. Essa interface não mapeia todos os terrenos do município nem recomenda perfuração. Visita técnica, avaliação hidrogeológica e confirmação em campo continuam necessárias.
 
-A análise adicional de geologia e plano de visitas continua acessível em uma seção recolhida. Acurácia, F1 macro e configurações dos cinco métodos aparecem abaixo do mapa, com explicações. Os antigos módulos de clima NASA e tratamento saíram da navegação principal para simplificar a tela, conforme solicitado. Os modelos e arquivos científicos anteriores foram preservados.
+A análise adicional de geologia e plano de visitas continua acessível em uma seção recolhida. Acurácia, F1 macro, matrizes de confusão e configurações dos cinco métodos aparecem abaixo do mapa, com explicações. Os antigos módulos de clima NASA e tratamento saíram da navegação principal para simplificar a tela, conforme solicitado. Os modelos e arquivos científicos anteriores foram preservados.
 
 Verificação: execução da interface em jsdom com canvas nativo, pontos gerados na abertura, correspondência entre cliques e coordenadas, remoção de sugestões desatualizadas e verificações anteriores dos modelos. O carregamento das ruas pela rede e o layout em um navegador completo não foram testados neste ambiente.

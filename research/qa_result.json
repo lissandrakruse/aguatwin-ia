@@ -10,6 +10,7 @@
     "candidate domain and ranking",
     "automatic geographic map, clicked coordinates and stale-point removal",
     "map-first interface with legacy climate tools hidden",
+    "displayed confusion matrices agree with held-out records for all five methods",
     "water and salt balance",
     "NASA valid response and retained state on failure",
     "NASA units and daily completeness",
