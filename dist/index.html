@@ -4,7 +4,675 @@
 :root{--ink:#123d3a;--muted:#576c69;--teal:#087f78;--gold:#bb733e;--line:#dce6e0;--bg:#f3f6f0}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}header{background:#113d3a;color:#fff;padding:32px max(24px,calc((100vw - 1220px)/2));}header .eyebrow{font-size:12px;letter-spacing:2px;color:#9fd5c8;text-transform:uppercase}h1{font-size:36px;margin:7px 0}header p{max-width:860px;color:#d2e6df;margin:8px 0}.status{display:inline-block;padding:5px 11px;border:1px solid #7baba1;border-radius:20px;font-size:12px;margin-top:12px}main{max-width:1268px;padding:24px;margin:auto}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}button,.btn{border:1px solid var(--line);background:white;color:var(--ink);border-radius:9px;padding:10px 15px;font:600 14px system-ui;cursor:pointer}button:hover{border-color:var(--teal)}button.active,button.primary{background:var(--teal);color:white;border-color:var(--teal)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #eab378;outline-offset:2px}.panel{display:none}.panel.active{display:block}.grid{display:grid;grid-template-columns:340px 1fr;gap:20px}.card{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px}.card h2,.card h3{margin:0 0 13px}h2{font-size:20px}h3{font-size:17px}.small{font-size:12px;color:var(--muted)}.notice{background:#e7f2ec;border-left:4px solid var(--teal);padding:13px 16px;border-radius:7px;margin-bottom:18px}.warn{background:#fff3e6;border-color:var(--gold)}label{display:block;font-size:12px;font-weight:650;margin:11px 0 4px}input,select{font:15px system-ui;width:100%;padding:9px 10px;border:1px solid #ccd9d3;border-radius:7px;background:#fff;color:var(--ink)}input[type=checkbox]{width:auto;vertical-align:middle}.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}.metric .value{font-size:27px;font-weight:700;letter-spacing:-.7px;margin:4px 0}.metric .label{font-size:12px;color:var(--muted)}.metric .unit{font-size:12px;color:var(--muted)}.metrics{margin-bottom:18px}canvas{width:100%;height:280px;display:block}.legend{font-size:12px;color:var(--muted);margin:5px 0 12px}.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 5px 0 14px}.dot:first-child{margin-left:0}.teal{background:var(--teal)}.gold{background:var(--gold)}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:10px 9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{font-size:12px;background:#edf4ef}.hypotheses p{margin:10px 0}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.error{color:#8c2d1d;font-weight:600}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:12px}a{color:var(--teal)}details{margin-top:12px}summary{cursor:pointer;font-weight:650}.nowrap{white-space:nowrap}.reading{padding:8px 0;border-bottom:1px solid var(--line)}@media(max-width:900px){.grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}header{padding:25px}main{padding:16px}h1{font-size:31px}}@media(max-width:500px){.metrics{grid-template-columns:1fr 1fr}.metric{padding:12px}.metric .value{font-size:23px}.card{padding:15px}}
 
 body{font-size:16px}label,.metric .label{font-size:14px}.small{font-size:13px}header{padding-top:20px;padding-bottom:20px}h1{font-size:30px}header p{font-size:15px;margin:4px 0}.status{margin-top:6px}.ai-grid{grid-template-columns:320px 1fr}.section-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.badge{font-size:12px;background:#e7f2ec;border:1px solid #ccd9d3;border-radius:20px;padding:4px 10px}.blue{background:#3368b2}.geo-map{width:100%;overflow:hidden;border-radius:8px}.geo-map svg{width:100%;display:block}#aiBenchmark{height:230px}.btn{text-decoration:none;display:inline-block}button:disabled{opacity:.55;cursor:default}details p{font-size:14px}.notice{font-size:14px}.r-strategies{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.r-choice{font-size:23px;font-weight:700}#rInputs input{min-width:105px}caption{caption-side:bottom;text-align:left;font-size:13px;color:var(--muted);padding:10px 0}#hCandidates td:last-child{white-space:normal;min-width:200px}@media(max-width:900px){.ai-grid{grid-template-columns:1fr}.r-strategies{grid-template-columns:1fr}}
-</style><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="vendor/leaflet.css"><link rel="stylesheet" href="interface.css"></head><body>
+</style><link rel="icon" href="favicon.svg" type="image/svg+xml"><style>/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: url(#default#VML);
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	background-image: url(vendor/images/layers.png);
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(vendor/images/layers-2x.png);
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	background-image: url(vendor/images/marker-icon.png);
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+</style><style>.start-guide{margin-bottom:20px;max-width:900px}.start-guide h2{font-size:25px;margin:0 0 8px}.start-guide p{margin:5px 0}.map-card h2{font-size:23px}.map-legend{display:flex;flex-wrap:wrap;gap:9px 18px;font-size:14px;margin:14px 0}.map-symbol{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px}.map-hint{font-size:14px;margin:10px 0}.map-candidate{cursor:pointer}.map-candidate:focus{outline:none}.map-candidate:focus circle,.map-candidate:hover circle{stroke:#173f3a;stroke-width:3}.region-context{margin:12px 0}.technical-section>summary{font-size:17px}.technical-section h2{margin-top:22px}.technical-section>.metrics{margin-top:20px}.map-card .warn{margin-top:18px;margin-bottom:0}.tutorial-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0}.tutorial-step{border:1px solid var(--line);padding:16px;border-radius:10px;background:#f6f9f4}.tutorial-step h3{font-size:17px;margin:0 0 8px}.tutorial-step p{margin:6px 0}.csv-example{background:#123d3a;color:#fff;padding:13px;border-radius:8px;overflow:auto;font-size:15px}.field-source{font-size:14px;background:#e7f2ec;padding:12px;border-radius:8px}.simple-explainer{font-size:15px}.geo-map svg{background:#f3f6f0}.ai-results{min-width:0}@media(max-width:900px){.ai-grid>.ai-results{grid-row:1}.ai-grid>aside{grid-row:2}.start-guide h2{font-size:22px}.tutorial-steps{grid-template-columns:1fr}}@media(max-width:500px){.map-card h2{font-size:20px}.section-top{flex-wrap:wrap}.map-legend{font-size:13px}}
+
+#aiMap{height:440px;min-height:360px;z-index:0}.candidate-icon{background:none;border:0}.candidate-pin{width:30px;height:30px;display:grid;place-items:center;color:#fff;background:#245fb3;border:2px solid #fff;border-radius:50%;font:bold 15px system-ui;box-shadow:0 1px 4px #0005}.candidate-pin:focus{outline:3px solid #123d3a}.climate-pin{width:26px;height:26px;display:grid;place-items:center;background:#e19a28;border:2px solid white;border-radius:5px;color:#123d3a;font-weight:800}.leaflet-container{font:14px system-ui}.leaflet-control-layers{font-size:13px}.leaflet-control-attribution{font-size:11px!important}.leaflet-popup-content{line-height:1.6}.leaflet-popup-content p{margin:8px 0}@media(max-width:500px){#aiMap{height:390px}}
+
+.confusion-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.confusion-card{border:1px solid var(--line);border-radius:10px;padding:12px}.confusion-card table{font-size:14px}.confusion-card th,.confusion-card td{white-space:normal;text-align:center;padding:8px}.confusion-card h3{margin:0 0 10px}.matrix-correct{background:#d8eee2;color:#123d3a;font-weight:750}.matrix-error{background:#fff2e8;color:#813e20}@media(max-width:700px){.confusion-grid{grid-template-columns:1fr}}
+
+.purple{background:#7941a3}.visit-pin{width:34px;height:30px;display:grid;place-items:center;border-radius:7px;background:#7941a3;color:white;border:2px solid white;font:bold 13px system-ui;box-shadow:0 1px 4px #0005}.all-coordinates{margin-top:20px}.all-coordinates th,.all-coordinates td{font-size:14px}#hVisits td:last-child{white-space:normal;min-width:180px}#hVisits td:nth-child(4){white-space:normal}#visitLegend[hidden]{display:none}
+</style></head><body>
 <header><div class="eyebrow">Pesquisa aplicada • Paraíba</div><h1>ÁguaTwin IA</h1><p>Locais para investigar poços em comunidades rurais da Paraíba.</p><span class="status">Mapa de pesquisa • cadastro SGB/SIAGAS • localização e coordenadas</span></header>
 <main><div class="notice"><b>Comece pelo mapa.</b> Os pontos azuis são sugestões para estudar em campo. A visita de uma equipe técnica é necessária para avaliar a possibilidade de perfuração.</div>
 <nav class="tabs" aria-label="Módulos"><button class="active" data-tab="ai">Mapa de poços</button><button hidden data-tab="rural">Água útil e campo</button><button hidden data-tab="sim">Simular água e energia</button><button hidden data-tab="nasa">Comparar dados NASA</button><button hidden data-tab="wells">Poços reais • SIAGAS</button><button hidden data-tab="field">NASA × medições locais</button><button hidden data-tab="methods">Método e referências</button></nav>
@@ -28,12 +696,12 @@ body{font-size:16px}label,.metric .label{font-size:14px}.small{font-size:13px}he
 <div class="ai-results">
 <div class="card map-card" id="wellMapCard"><div class="section-top"><h2>2. Veja os locais no mapa</h2><span class="badge">Sugestões de investigação</span></div>
 <p id="aiMapSummary" role="status" aria-live="polite">Carregando a região e os pontos…</p>
-<div class="map-legend"><span><i class="map-symbol blue"></i>Local para investigar</span><span><i class="map-symbol teal"></i>Poço com produção no cadastro</span><span><i class="map-symbol gold"></i>Poço seco no cadastro</span><span>○ Centro escolhido</span></div>
+<div class="map-legend"><span><i class="map-symbol blue"></i>Local para investigar</span><span><i class="map-symbol teal"></i>Poço com produção no cadastro</span><span><i class="map-symbol gold"></i>Poço seco no cadastro</span><span>○ Centro escolhido</span><span id="visitLegend" hidden><i class="map-symbol purple"></i>Visita proposta</span></div>
 <div id="aiMap" class="geo-map" aria-label="Mapa dos poços cadastrados e dos locais sugeridos"></div>
 <div class="toolbar"><button id="mapRegion">Ver toda a Paraíba</button><button id="mapLocal">Voltar aos locais sugeridos</button></div><p id="mapTileStatus" class="small" role="status">Mapa de fundo: OpenStreetMap. Pontos: cadastro SGB/SIAGAS e hipóteses da IA.</p><p class="map-hint">Arraste o mapa e use +/− para aproximar. Clique em um número azul para ver a localização. Os números indicam a ordem do modelo, não a quantidade de água.</p>
 <div id="candidateSelection" class="notice" aria-live="polite">Os pontos azuis são hipóteses. Ainda não há um poço confirmado nesses locais.</div>
 <div class="toolbar"><button id="aiMapRefresh" disabled>Atualizar as sugestões do mapa</button><button id="exportCandidates" disabled>Baixar os locais sugeridos</button></div>
-<details><summary>Ver a lista com todas as coordenadas</summary><div class="table-wrap"><table id="candidateTable"><tr><td>Preparando as sugestões…</td></tr></table></div><p class="small">A ordem usa o Random Forest, com localização e profundidade suposta. O escore é uma pontuação interna, não uma chance comprovada de encontrar água.</p></details>
+<div class="all-coordinates"><h3>Todos os locais e suas coordenadas</h3><div class="table-wrap"><table id="candidateTable"><tr><td>Preparando as sugestões…</td></tr></table></div><p class="small">A ordem usa o Random Forest, com localização e profundidade suposta. O escore é uma pontuação interna, não uma chance comprovada de encontrar água.</p></div>
 <div class="notice warn"><b>3. Antes de perfurar:</b> uma equipe precisa visitar o local, estudar as rochas e fazer os levantamentos necessários. Depois, um teste de bombeamento mede a quantidade de água e uma análise em laboratório verifica sua qualidade.</div></div>
 <div class="card technical-section"><h2>Resultados dos cinco métodos de IA</h2>
 <p>Nos testes, cada método tentou distinguir registros de poços com produção de água e registros de poço seco. Esses números mostram o desempenho no cadastro histórico.</p>
@@ -43,13 +711,13 @@ body{font-size:16px}label,.metric .label{font-size:14px}.small{font-size:13px}he
 <p>Há mais registros com produção do que de poços secos. Por isso, uma acurácia alta pode esconder erros na identificação dos secos: confira também o F1 e a acurácia balanceada.</p><h3>Matrizes de confusão</h3><p>As <b>linhas</b> mostram o que está no cadastro; as <b>colunas</b> mostram o que a IA previu. As casas verdes são os acertos. As outras casas são os erros. Os números são quantidades de registros do teste.</p><div id="aiConfusion" class="confusion-grid"></div><p id="aiValidationNote" class="small"></p><canvas id="aiBenchmark" role="img" aria-label="Comparação do desempenho dos cinco métodos na validação espacial"></canvas>
 <details><summary>Ver dados e configuração dos modelos</summary><p>Entradas da comparação: latitude, longitude e profundidade. KNN: 9 vizinhos. Random Forest: 64 árvores, profundidade máxima 6, mínimo de 5 registros por folha. Naive Bayes: modelo gaussiano. K-means: 2 grupos. CNN 1D: 8 filtros de tamanho 2, ativação ReLU e saída de 2 classes.</p><p>A CNN usa três variáveis tabulares e não imagens de satélite. K-means recebe uma classe pela maioria no treino. Os cinco métodos usam os mesmos cinco grupos geográficos de teste, com células de 0,04°. Os hiperparâmetros foram fixados antes da avaliação.</p><p>A padronização e a associação dos grupos do K-means às classes usam apenas os dados de treino. Essa comparação não usa faixa de isolamento entre células vizinhas; o teste adicional de geologia aparece abaixo. Faltam datas das medições e uma validação em novos locais.</p><a class="btn" href="validacao_IA_AguaTwin.json" download>Baixar os resultados completos</a></details>
 <details><summary>Ver a estimativa das IAs no ponto selecionado</summary><p id="aiRecordNote" class="small"></p><div class="table-wrap"><table id="aiPrediction"><thead><tr><th>Método</th><th>Resultado estimado</th><th>Pontuação interna</th></tr></thead><tbody><tr><td colspan="3">Carregando…</td></tr></tbody></table></div><p class="small">Em um registro escolhido, mostramos a previsão obtida sem usar o grupo desse registro no treino. Em um ponto novo, os modelos usam o ajuste completo. As pontuações não são probabilidades calibradas de encontrar água.</p></details></div>
-<details class="card"><summary>Adicionar geologia e preparar uma visita técnica</summary><div class="section-top"><h2>Geologia e plano de visitas</h2><span class="badge">Novo • v2.1</span></div>
-<p>Use as coordenadas e o raio ao lado para explorar o mapa hidrogeológico do SGB. O novo Random Forest usa localização, domínio hidrolitológico e distância a estruturas mapeadas, sem exigir profundidade de um poço futuro.</p>
-<p class="small">As camadas regionais não comprovam fraturas com água. Os escores não são probabilidades calibradas. A dispersão das árvores orienta uma heurística de coleta; seu benefício precisa ser testado.</p>
-<div class="toolbar"><button id="hPlan" class="primary">Preparar visitas de campo</button><button id="hExport" disabled>Baixar plano e hipóteses</button><a class="btn" href="hydro_validation.json" download>Resultados dos 18 testes</a></div>
-<p id="hStatus" role="status" aria-live="polite">O mapa e os modelos são carregados ao preparar o plano (cerca de 6 MB). Planejamento de investigação, sujeito a verificação em campo.</p>
-<div class="table-wrap"><table id="hCandidates"><caption>Pontos sem escore por falta de suporte precisam de novos dados; isso não indica ausência de água.</caption><tbody><tr><td>Nenhum plano preparado.</td></tr></tbody></table></div>
-<details><summary>Comparação com e sem geologia, com isolamento espacial</summary><p>Avaliação histórica com os mesmos cinco grupos de 0,04° da v2.0 e faixas de 0, 2 e 5 km entre treino e teste. A codificação de categorias usa somente o treino. O modelo sem profundidade foi escolhido pela disponibilidade de entradas em locais futuros, sem escolher o melhor resultado no teste.</p><div class="table-wrap"><table id="hValidation"><tbody><tr><td>Carregue o plano para ver a avaliação.</td></tr></tbody></table></div><p class="small">Acrescentar a geologia regional não melhorou a classificação de produção. Datas dos desfechos históricos não estão disponíveis; a independência temporal entre esse cadastro e a elaboração do mapa também não foi demonstrada. Faltam validação prospectiva e calibração.</p></details></details>
+<div class="card" id="hydroPlanCard"><h2>Preparar uma visita de campo</h2><p>O plano cruza os registros de poços com o mapa regional de rochas. Ele propõe locais para coletar dados, sem exigir uma profundidade para um poço futuro.</p>
+<div class="toolbar"><button id="hPlan" class="primary">Preparar visitas de campo</button><button id="hExport" disabled>Baixar plano e hipóteses</button><button id="hTests">Ver resultados dos 18 testes</button><button id="hShowMap" disabled>Ver visitas no mapa</button></div>
+<p id="hStatus" role="status" aria-live="polite">Escolha a região e prepare o plano. A primeira consulta carrega cerca de 6 MB. O download fica disponível depois de gerar visitas.</p>
+<div id="hPlanView" hidden><h3>Visitas propostas</h3><p id="hPlanSummary"></p><div class="table-wrap"><table id="hVisits"></table></div><p>Roxo no mapa: V1, V2… Estas visitas servem para investigar; não comprovam água. A cidade indicada é a do registro mais próximo.</p><div class="toolbar"><button id="hExportCSV" disabled>Baixar coordenadas para planilha</button><button id="hExportJSON" disabled>Baixar dados técnicos</button></div><p class="small">“Baixar plano e hipóteses” gera um arquivo que abre no navegador, com as visitas e todas as coordenadas.</p></div>
+<details><summary>Ver todas as hipóteses do plano</summary><div class="table-wrap"><table id="hCandidates"><tbody><tr><td>Prepare um plano para ver os pontos.</td></tr></tbody></table></div><p class="small">Os escores são pontuações dos modelos. Não são probabilidades calibradas de encontrar água ou de ter água própria para beber.</p></details>
+<p id="hTestStatus" role="status" aria-live="polite"></p><div id="hResults" hidden><h3>Resultados dos 18 testes</h3><p>Compare cadastro, geologia e isolamento entre os locais de treino e de teste. Acurácia: proporção de acertos. F1 macro: equilíbrio do desempenho nas duas classes.</p><div class="table-wrap"><table id="hValidation"></table></div><p class="small">Acrescentar a geologia regional não melhorou a classificação de produção neste estudo. Os resultados são históricos; falta confirmação em novos locais.</p><button id="hReportJSON">Baixar o relatório técnico completo</button></div>
+</div>
 
 <details class="card data-sources"><summary>De onde vêm os dados do mapa?</summary><p id="aiProvenance" class="small"></p><div class="toolbar"><a class="btn" href="dataset_potential_Paraiba.csv" download>Dados de produção e poços secos</a><a class="btn" href="dataset_salinity_Paraiba.csv" download>Dados de sais</a><a class="btn" href="validacao_IA_AguaTwin.json" download>Relatório de validação</a><a class="btn" href="metodos_IA.zip" download>Código do treino</a></div><p class="small">SGB/SIAGAS: registros históricos. A data do teste ou da coleta química não está disponível nessa consulta; a situação atual pode ser diferente.</p></details>
 </div></div></section>
@@ -183,4 +851,4 @@ $('wellProvenance').textContent=JSON.stringify(WELL_DATA.provenance,null,2);
 function setClimate(rows,source){if(!Array.isArray(rows)||rows.length!==731||rows.some(r=>!Number.isFinite(r.rain)||!Number.isFinite(r.solar)||!Number.isFinite(r.temp)))throw Error('Clima inválido.');simClimate=rows;simClimateSource=source;$('simClimateNote').textContent=`Clima: ponto ${source.latitude}°, ${source.longitude}°, NASA POWER 2024–2025. A comparação histórica na aba NASA conserva o ponto inicial de Cabaceiras.`;renderSim();}
 function restoreClimate(){simClimate=daily;simClimateSource=NASA.provenance;$('simClimateNote').textContent='Clima: Cabaceiras, −7,49°, −36,29°, NASA POWER 2024–2025.';renderSim();}
 window.AguaTwin={model,compareRows,parseCSV,daily,summary,monthly,wells,wellStats:WELL_DATA.stats,scenarioWellBinding,csvCell,setClimate,restoreClimate,getClimate:()=>({rows:simClimate,source:simClimateSource})};renderSim();
-</script><script src="vendor/leaflet.js"></script><script src="well_map.js"></script><script src="ai.js"></script><script src="decision.js"></script><script src="rural.js"></script><script src="hydro.js"></script><script src="hydro_ui.js"></script></body></html>
+</script><script src="vendor/leaflet.js?v=db49d009c841"></script><script src="well_map.js?v=5fd5b9d7944f"></script><script src="ai.js?v=344d2db48c37"></script><script src="decision.js?v=0d2dc9a3d384"></script><script src="rural.js?v=0ca56612d313"></script><script id="hydro-validation-data" type="application/json">{"version":"2.1","source":{"provider":"SGB/CPRM","service":"https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer","accessed_utc":"2026-10-05T10:24:50.115113+00:00","map_reference":"Brito & Paula, 2019","catalog_url":"https://rigeo.sgb.gov.br/handle/doc/21598","excluded_predictor_layers":[0,1,4,6,7,8,9],"excluded_reason":"Avoid target-derived conductivity, productivity and well-density information; use descriptive structures and hydrolithological domains only.","layers":{"structures":{"id":2,"name":"Estruturas embasamento fraturado","features":841,"metadata_url":"https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2?f=pjson","ids_url":"https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2/query?where=1%3D1&returnIdsOnly=true&f=json","query_urls":["https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2/query?objectIds=460%2C461%2C462%2C463%2C464%2C465%2C466%2C467%2C468%2C469%2C470%2C471%2C472%2C473%2C474%2C475%2C476%2C477%2C478%2C479%2C480%2C481%2C482%2C483%2C484%2C485%2C486%2C487%2C488%2C489%2C490%2C491%2C492%2C493%2C494%2C495%2C496%2C497%2C498%2C499%2C500%2C501%2C502%2C503%2C504%2C505%2C506%2C507%2C508%2C509%2C510%2C511%2C512%2C513%2C514%2C515%2C516%2C517%2C518%2C519%2C520%2C521%2C522%2C523%2C524%2C525%2C526%2C527%2C528%2C529%2C530%2C531%2C532%2C533%2C534%2C535%2C536%2C537%2C538%2C539%2C540%2C541%2C542%2C543%2C544%2C545%2C546%2C547%2C548%2C549%2C550%2C551%2C552%2C553%2C554%2C555%2C556%2C557%2C558%2C559%2C560%2C561%2C562%2C563%2C564%2C565%2C566%2C567%2C568%2C569%2C570%2C571%2C572%2C573%2C574%2C575%2C576%2C577%2C578%2C579%2C580%2C581%2C582%2C583%2C584%2C585%2C586%2C587%2C588%2C589%2C590%2C591%2C592%2C593%2C594%2C595%2C596%2C597%2C598%2C599%2C600%2C601%2C602%2C603%2C604%2C605%2C606%2C607%2C608%2C609%2C610%2C611%2C612%2C613%2C614%2C615%2C616%2C617%2C618%2C619%2C620%2C621%2C622%2C623%2C624%2C625%2C626%2C627%2C628%2C629%2C630%2C631%2C632%2C633%2C634%2C635%2C636%2C637%2C638%2C639%2C640%2C641%2C642%2C643%2C644%2C645%2C646%2C647%2C648%2C649%2C650%2C651%2C652%2C653%2C654%2C655%2C656%2C657%2C658%2C659%2C660%2C661%2C662%2C663%2C664%2C665%2C666%2C667%2C668%2C669%2C670%2C671%2C672%2C673%2C674%2C675%2C676%2C677%2C678%2C679%2C680%2C681%2C682%2C683%2C684%2C685%2C686%2C687%2C688%2C689%2C690%2C691%2C692%2C693%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701%2C702%2C703%2C704%2C705%2C706%2C707%2C708%2C709%2C710%2C711%2C712%2C713%2C714%2C715%2C716%2C717%2C718%2C719%2C720%2C721%2C722%2C723%2C724%2C725%2C726%2C727%2C728%2C729%2C730%2C731%2C732%2C733%2C734%2C735%2C736%2C737%2C738%2C739%2C740%2C741%2C742%2C743%2C744%2C745%2C746%2C747%2C748%2C749%2C750%2C751%2C752%2C753%2C754%2C755%2C756%2C757%2C758%2C759%2C760%2C761%2C762%2C763%2C764%2C765%2C766%2C767%2C768%2C769%2C770%2C771%2C772%2C773%2C774%2C775%2C776%2C777%2C778%2C779%2C780%2C781%2C782%2C783%2C784%2C785%2C786%2C787%2C788%2C789%2C790%2C791%2C792%2C793%2C794%2C795%2C796%2C797%2C798%2C799%2C800%2C801%2C802%2C803%2C804%2C805%2C806%2C807%2C808%2C809%2C810%2C811%2C812%2C813%2C814%2C815%2C816%2C817%2C818%2C819%2C820%2C821%2C822%2C823%2C824%2C825%2C826%2C827%2C828%2C829%2C830%2C831%2C832%2C833%2C834%2C835%2C836%2C837%2C838%2C839%2C840%2C841%2C842%2C843%2C844%2C845%2C846%2C847%2C848%2C849%2C850%2C851%2C852%2C853%2C854%2C855%2C856%2C857%2C858%2C859&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson","https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2/query?objectIds=860%2C861%2C862%2C863%2C864%2C865%2C866%2C867%2C868%2C869%2C870%2C871%2C872%2C873%2C874%2C875%2C876%2C877%2C878%2C879%2C880%2C881%2C882%2C883%2C884%2C885%2C886%2C887%2C888%2C889%2C890%2C891%2C892%2C893%2C894%2C895%2C896%2C897%2C898%2C899%2C900%2C901%2C902%2C903%2C904%2C905%2C906%2C907%2C908%2C909%2C910%2C911%2C912%2C913%2C914%2C915%2C916%2C917%2C918%2C919%2C920%2C921%2C922%2C923%2C924%2C925%2C926%2C927%2C928%2C929%2C930%2C931%2C932%2C933%2C934%2C935%2C936%2C937%2C938%2C939%2C940%2C941%2C942%2C943%2C944%2C945%2C946%2C947%2C948%2C949%2C950%2C951%2C952%2C953%2C954%2C955%2C956%2C957%2C958%2C959%2C960%2C961%2C962%2C963%2C964%2C965%2C966%2C967%2C968%2C969%2C970%2C971%2C972%2C973%2C974%2C975%2C976%2C977%2C978%2C979%2C980%2C981%2C982%2C983%2C984%2C985%2C986%2C987%2C988%2C989%2C990%2C991%2C992%2C993%2C994%2C995%2C996%2C997%2C998%2C999%2C1000%2C1001%2C1002%2C1003%2C1004%2C1005%2C1006%2C1007%2C1008%2C1009%2C1010%2C1011%2C1012%2C1013%2C1014%2C1015%2C1016%2C1017%2C1018%2C1019%2C1020%2C1021%2C1022%2C1023%2C1024%2C1025%2C1026%2C1027%2C1028%2C1029%2C1030%2C1031%2C1032%2C1033%2C1034%2C1035%2C1036%2C1037%2C1038%2C1039%2C1040%2C1041%2C1042%2C1043%2C1044%2C1045%2C1046%2C1047%2C1048%2C1049%2C1050%2C1051%2C1052%2C1053%2C1054%2C1055%2C1056%2C1057%2C1058%2C1059%2C1060%2C1061%2C1062%2C1063%2C1064%2C1065%2C1066%2C1067%2C1068%2C1069%2C1070%2C1071%2C1072%2C1073%2C1074%2C1075%2C1076%2C1077%2C1078%2C1079%2C1080%2C1081%2C1082%2C1083%2C1084%2C1085%2C1086%2C1087%2C1088%2C1089%2C1090%2C1091%2C1092%2C1093%2C1094%2C1095%2C1096%2C1097%2C1098%2C1099%2C1100%2C1101%2C1102%2C1103%2C1104%2C1105%2C1106%2C1107%2C1108%2C1109%2C1110%2C1111%2C1112%2C1113%2C1114%2C1115%2C1116%2C1117%2C1118%2C1119%2C1120%2C1121%2C1122%2C1123%2C1124%2C1125%2C1126%2C1127%2C1128%2C1129%2C1130%2C1131%2C1132%2C1133%2C1134%2C1135%2C1136%2C1137%2C1138%2C1139%2C1140%2C1141%2C1142%2C1143%2C1144%2C1145%2C1146%2C1147%2C1148%2C1149%2C1150%2C1151%2C1152%2C1153%2C1154%2C1155%2C1156%2C1157%2C1158%2C1159%2C1160%2C1161%2C1162%2C1163%2C1164%2C1165%2C1166%2C1167%2C1168%2C1169%2C1170%2C1171%2C1172%2C1173%2C1174%2C1175%2C1176%2C1177%2C1178%2C1179%2C1180%2C1181%2C1182%2C1183%2C1184%2C1185%2C1186%2C1187%2C1188%2C1189%2C1190%2C1191%2C1192%2C1193%2C1194%2C1195%2C1196%2C1197%2C1198%2C1199%2C1200%2C1201%2C1202%2C1203%2C1204%2C1205%2C1206%2C1207%2C1208%2C1209%2C1210%2C1211%2C1212%2C1213%2C1214%2C1215%2C1216%2C1217%2C1218%2C1219%2C1220%2C1221%2C1222%2C1223%2C1224%2C1225%2C1226%2C1227%2C1228%2C1229%2C1230%2C1231%2C1232%2C1233%2C1234%2C1235%2C1236%2C1237%2C1238%2C1239%2C1240%2C1241%2C1242%2C1243%2C1244%2C1245%2C1246%2C1247%2C1248%2C1249%2C1250%2C1251%2C1252%2C1253%2C1254%2C1255%2C1256%2C1257%2C1258%2C1259&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson","https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2/query?objectIds=1260%2C1261%2C1262%2C1263%2C1264%2C1265%2C1266%2C1267%2C1268%2C1269%2C1270%2C1271%2C1272%2C1273%2C1274%2C1275%2C1276%2C1277%2C1278%2C1279%2C1280%2C1281%2C1282%2C1283%2C1284%2C1285%2C1286%2C1287%2C1288%2C1289%2C1290%2C1291%2C1292%2C1293%2C1294%2C1295%2C1296%2C1297%2C1298%2C1299%2C1300&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson"],"sha256":"5998077a38d3e3a4eba634386a507af476dd98102458066ab146d7c7d0e77bd7","source_crs":{"wkid":4674,"latestWkid":4674,"xyTolerance":8.983152841195213e-09,"zTolerance":0.001,"mTolerance":0.001,"falseX":-400,"falseY":-400,"xyUnits":11258999068426.24,"falseZ":-100000,"zUnits":10000,"falseM":-100000,"mUnits":10000},"output_crs":"EPSG:4326","copyright":""},"domains":{"id":5,"name":"Domínio Hidrolitológico","features":523,"metadata_url":"https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/5?f=pjson","ids_url":"https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/5/query?where=1%3D1&returnIdsOnly=true&f=json","query_urls":["https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/5/query?objectIds=119%2C120%2C121%2C122%2C123%2C124%2C125%2C126%2C127%2C128%2C129%2C130%2C131%2C132%2C133%2C134%2C135%2C136%2C137%2C138%2C139%2C140%2C141%2C142%2C143%2C144%2C145%2C146%2C147%2C148%2C149%2C150%2C151%2C152%2C153%2C154%2C155%2C156%2C157%2C158%2C159%2C160%2C161%2C162%2C163%2C164%2C165%2C166%2C167%2C168%2C169%2C170%2C171%2C172%2C173%2C174%2C175%2C176%2C177%2C178%2C179%2C180%2C181%2C182%2C183%2C184%2C185%2C186%2C187%2C188%2C189%2C190%2C191%2C192%2C193%2C194%2C195%2C196%2C197%2C198%2C199%2C200%2C201%2C202%2C203%2C204%2C205%2C206%2C207%2C208%2C209%2C210%2C211%2C212%2C213%2C214%2C215%2C216%2C217%2C218%2C219%2C220%2C221%2C222%2C223%2C224%2C225%2C226%2C227%2C228%2C229%2C230%2C231%2C232%2C233%2C234%2C235%2C236%2C237%2C238%2C239%2C240%2C241%2C242%2C243%2C244%2C245%2C246%2C247%2C248%2C249%2C250%2C251%2C252%2C253%2C254%2C255%2C256%2C257%2C258%2C259%2C260%2C261%2C262%2C263%2C264%2C265%2C266%2C267%2C268%2C269%2C270%2C271%2C272%2C273%2C274%2C275%2C276%2C277%2C278%2C279%2C280%2C281%2C282%2C283%2C284%2C285%2C286%2C287%2C288%2C289%2C290%2C291%2C292%2C293%2C294%2C295%2C296%2C297%2C298%2C299%2C300%2C301%2C302%2C303%2C304%2C305%2C306%2C307%2C308%2C309%2C310%2C311%2C312%2C313%2C314%2C315%2C316%2C317%2C318%2C319%2C320%2C321%2C322%2C323%2C324%2C325%2C326%2C327%2C328%2C329%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C338%2C339%2C340%2C341%2C342%2C343%2C344%2C345%2C346%2C347%2C348%2C349%2C350%2C351%2C352%2C353%2C354%2C355%2C356%2C357%2C358%2C359%2C360%2C361%2C362%2C363%2C364%2C365%2C366%2C367%2C368%2C369%2C370%2C371%2C372%2C373%2C374%2C375%2C376%2C377%2C378%2C379%2C380%2C381%2C382%2C383%2C384%2C385%2C386%2C387%2C388%2C389%2C390%2C391%2C392%2C393%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C402%2C403%2C404%2C405%2C406%2C407%2C408%2C409%2C410%2C411%2C412%2C413%2C414%2C415%2C416%2C417%2C418%2C419%2C420%2C421%2C422%2C423%2C424%2C425%2C426%2C427%2C428%2C429%2C430%2C431%2C432%2C433%2C434%2C435%2C436%2C437%2C438%2C439%2C440%2C441%2C442%2C443%2C444%2C445%2C446%2C447%2C448%2C449%2C450%2C451%2C452%2C453%2C454%2C455%2C456%2C457%2C458%2C459%2C460%2C461%2C462%2C463%2C464%2C465%2C466%2C467%2C468%2C469%2C470%2C471%2C472%2C473%2C474%2C475%2C476%2C477%2C478%2C479%2C480%2C481%2C482%2C483%2C484%2C485%2C486%2C487%2C488%2C489%2C490%2C491%2C492%2C493%2C494%2C495%2C496%2C497%2C498%2C499%2C500%2C501%2C502%2C503%2C504%2C505%2C506%2C507%2C508%2C509%2C510%2C511%2C512%2C513%2C514%2C515%2C516%2C517%2C518&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson","https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/5/query?objectIds=519%2C520%2C521%2C522%2C523%2C524%2C525%2C526%2C527%2C528%2C529%2C530%2C531%2C532%2C533%2C534%2C535%2C536%2C537%2C538%2C539%2C540%2C541%2C542%2C543%2C544%2C545%2C546%2C547%2C548%2C549%2C550%2C551%2C552%2C553%2C554%2C555%2C556%2C557%2C558%2C559%2C560%2C561%2C562%2C563%2C564%2C565%2C566%2C567%2C568%2C569%2C570%2C571%2C572%2C573%2C574%2C575%2C576%2C577%2C578%2C579%2C580%2C581%2C582%2C583%2C584%2C585%2C586%2C587%2C588%2C589%2C590%2C591%2C592%2C593%2C594%2C595%2C596%2C597%2C598%2C599%2C600%2C601%2C602%2C603%2C604%2C605%2C606%2C607%2C608%2C609%2C610%2C611%2C612%2C613%2C614%2C615%2C616%2C617%2C618%2C619%2C620%2C621%2C622%2C623%2C624%2C625%2C626%2C627%2C628%2C629%2C630%2C631%2C632%2C633%2C634%2C635%2C636%2C637%2C638%2C639%2C640%2C641&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson"],"sha256":"6ab608aa07e759580d53a1002e6239c14acfd5911ca9f011d17c236a921e8618","source_crs":{"wkid":4674,"latestWkid":4674,"xyTolerance":8.983152841195213e-09,"zTolerance":0.001,"mTolerance":0.001,"falseX":-400,"falseY":-400,"xyUnits":11258999068426.24,"falseZ":-100000,"zUnits":10000,"falseM":-100000,"mUnits":10000},"output_crs":"EPSG:4326","copyright":""}},"derivation":{"domain_simplification_degrees":0.0005,"coordinate_decimals":6,"preserve_topology":true,"geometry_repairs":[{"feature_id":252,"reason":"Ring Self-intersection[-35.277007005 -6.65736443078238]","relative_area_change":6.956783742405795e-15,"operation":"shapely.make_valid"}],"full_precision_fallback_feature_ids":[251,252],"boundary_warning":"Regional map. Unit membership near boundaries needs field verification. Training and browser share the same derived geometry."}},"buffers_km":[0,2,5],"distance_crs":"Local equirectangular approximation: lat0=-7.15, lon0=-36.5, 111.195 km/degree; identical in Python/browser; not survey distances","features":{"cadastre":["latitude","longitude","depth_m"],"geology":["latitude","longitude","depth_m","log_structure_distance","hydrolithological_domain (train-only one-hot)"],"pre_drill":["latitude","longitude","log_structure_distance","hydrolithological_domain (train-only one-hot)"]},"fold_definition":"Same five 0.04-degree GroupKFold splits as v2.0; remove training points closer than each buffer to any held-out point","selection":"Settings, buffers and feature sets fixed before testing. No best-result selection. Deploy pre_drill because observed borehole depth is unavailable at new locations.","limitations":["Historical status, not dated drilling outcome","Regional structures are not verified water-bearing fractures","Uncalibrated scores; tree dispersion is a heuristic","No terrain variables, field geophysics or community reports in this training","No prospective validation or efficacy claim"],"tasks":{"potential":{"n":3022,"unmapped":4,"multiple_domain_matches":3,"evaluations":[{"feature_set":"cadastre","buffer_km":0,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":2417,"test_n":605,"train_class_counts":[281,2136],"minimum_train_test_km":0.12353756350207769},{"fold":2,"train_before":2417,"train_n":2417,"test_n":605,"train_class_counts":[287,2130],"minimum_train_test_km":0.12616476332906826},{"fold":3,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[273,2145],"minimum_train_test_km":0.12353756350207769},{"fold":4,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[273,2145],"minimum_train_test_km":0.03080099468058202},{"fold":5,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[266,2152],"minimum_train_test_km":0.03080099468058202}],"metrics":{"accuracy":0.6896095301125083,"balanced_accuracy":0.6935039764391244,"macro_f1":0.5682909742190165,"recall_class0":0.6985507246376812,"recall_class1":0.6884572282405678,"confusion_matrix":[[241,104],[834,1843]]}},{"feature_set":"geology","buffer_km":0,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":2417,"test_n":605,"train_class_counts":[281,2136],"minimum_train_test_km":0.12353756350207769},{"fold":2,"train_before":2417,"train_n":2417,"test_n":605,"train_class_counts":[287,2130],"minimum_train_test_km":0.12616476332906826},{"fold":3,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[273,2145],"minimum_train_test_km":0.12353756350207769},{"fold":4,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[273,2145],"minimum_train_test_km":0.03080099468058202},{"fold":5,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[266,2152],"minimum_train_test_km":0.03080099468058202}],"metrics":{"accuracy":0.6922567835870285,"balanced_accuracy":0.6760606995717681,"macro_f1":0.5637885145844624,"recall_class0":0.6550724637681159,"recall_class1":0.6970489353754202,"confusion_matrix":[[226,119],[811,1866]]}},{"feature_set":"pre_drill","buffer_km":0,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":2417,"test_n":605,"train_class_counts":[281,2136],"minimum_train_test_km":0.12353756350207769},{"fold":2,"train_before":2417,"train_n":2417,"test_n":605,"train_class_counts":[287,2130],"minimum_train_test_km":0.12616476332906826},{"fold":3,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[273,2145],"minimum_train_test_km":0.12353756350207769},{"fold":4,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[273,2145],"minimum_train_test_km":0.03080099468058202},{"fold":5,"train_before":2418,"train_n":2418,"test_n":604,"train_class_counts":[266,2152],"minimum_train_test_km":0.03080099468058202}],"metrics":{"accuracy":0.6621442753143614,"balanced_accuracy":0.6338140791389886,"macro_f1":0.53304085031047,"recall_class0":0.5971014492753624,"recall_class1":0.6705267090026149,"confusion_matrix":[[206,139],[882,1795]]}},{"feature_set":"cadastre","buffer_km":2,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":2222,"test_n":605,"train_class_counts":[266,1956],"minimum_train_test_km":2.0067029339103355},{"fold":2,"train_before":2417,"train_n":2243,"test_n":605,"train_class_counts":[273,1970],"minimum_train_test_km":2.0054864943970414},{"fold":3,"train_before":2418,"train_n":2219,"test_n":604,"train_class_counts":[254,1965],"minimum_train_test_km":2.0078586412127013},{"fold":4,"train_before":2418,"train_n":2190,"test_n":604,"train_class_counts":[248,1942],"minimum_train_test_km":2.007522970036002},{"fold":5,"train_before":2418,"train_n":2243,"test_n":604,"train_class_counts":[250,1993],"minimum_train_test_km":2.010866241188914}],"metrics":{"accuracy":0.699867637326274,"balanced_accuracy":0.7030815373038173,"macro_f1":0.577362534510447,"recall_class0":0.7072463768115942,"recall_class1":0.6989166977960404,"confusion_matrix":[[244,101],[806,1871]]}},{"feature_set":"geology","buffer_km":2,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":2222,"test_n":605,"train_class_counts":[266,1956],"minimum_train_test_km":2.0067029339103355},{"fold":2,"train_before":2417,"train_n":2243,"test_n":605,"train_class_counts":[273,1970],"minimum_train_test_km":2.0054864943970414},{"fold":3,"train_before":2418,"train_n":2219,"test_n":604,"train_class_counts":[254,1965],"minimum_train_test_km":2.0078586412127013},{"fold":4,"train_before":2418,"train_n":2190,"test_n":604,"train_class_counts":[248,1942],"minimum_train_test_km":2.007522970036002},{"fold":5,"train_before":2418,"train_n":2243,"test_n":604,"train_class_counts":[250,1993],"minimum_train_test_km":2.010866241188914}],"metrics":{"accuracy":0.7021839841164792,"balanced_accuracy":0.6917639797956829,"macro_f1":0.5748165323488361,"recall_class0":0.6782608695652174,"recall_class1":0.7052670900261486,"confusion_matrix":[[234,111],[789,1888]]}},{"feature_set":"pre_drill","buffer_km":2,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":2222,"test_n":605,"train_class_counts":[266,1956],"minimum_train_test_km":2.0067029339103355},{"fold":2,"train_before":2417,"train_n":2243,"test_n":605,"train_class_counts":[273,1970],"minimum_train_test_km":2.0054864943970414},{"fold":3,"train_before":2418,"train_n":2219,"test_n":604,"train_class_counts":[254,1965],"minimum_train_test_km":2.0078586412127013},{"fold":4,"train_before":2418,"train_n":2190,"test_n":604,"train_class_counts":[248,1942],"minimum_train_test_km":2.007522970036002},{"fold":5,"train_before":2418,"train_n":2243,"test_n":604,"train_class_counts":[250,1993],"minimum_train_test_km":2.010866241188914}],"metrics":{"accuracy":0.6661151555261416,"balanced_accuracy":0.6120679107588529,"macro_f1":0.5269747289976998,"recall_class0":0.5420289855072464,"recall_class1":0.6821068360104595,"confusion_matrix":[[187,158],[851,1826]]}},{"feature_set":"cadastre","buffer_km":5,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":1417,"test_n":605,"train_class_counts":[192,1225],"minimum_train_test_km":5.016110550584443},{"fold":2,"train_before":2417,"train_n":1385,"test_n":605,"train_class_counts":[184,1201],"minimum_train_test_km":5.003975895892688},{"fold":3,"train_before":2418,"train_n":1374,"test_n":604,"train_class_counts":[172,1202],"minimum_train_test_km":5.007152544943449},{"fold":4,"train_before":2418,"train_n":1437,"test_n":604,"train_class_counts":[185,1252],"minimum_train_test_km":5.006923783565608},{"fold":5,"train_before":2418,"train_n":1447,"test_n":604,"train_class_counts":[167,1280],"minimum_train_test_km":5.003550613955589}],"metrics":{"accuracy":0.6945731303772337,"balanced_accuracy":0.6748431350256885,"macro_f1":0.5646255636497077,"recall_class0":0.6492753623188405,"recall_class1":0.7004109077325364,"confusion_matrix":[[224,121],[802,1875]]}},{"feature_set":"geology","buffer_km":5,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":1417,"test_n":605,"train_class_counts":[192,1225],"minimum_train_test_km":5.016110550584443},{"fold":2,"train_before":2417,"train_n":1385,"test_n":605,"train_class_counts":[184,1201],"minimum_train_test_km":5.003975895892688},{"fold":3,"train_before":2418,"train_n":1374,"test_n":604,"train_class_counts":[172,1202],"minimum_train_test_km":5.007152544943449},{"fold":4,"train_before":2418,"train_n":1437,"test_n":604,"train_class_counts":[185,1252],"minimum_train_test_km":5.006923783565608},{"fold":5,"train_before":2418,"train_n":1447,"test_n":604,"train_class_counts":[167,1280],"minimum_train_test_km":5.003550613955589}],"metrics":{"accuracy":0.7048312375909993,"balanced_accuracy":0.6591707134852447,"macro_f1":0.5643666889254194,"recall_class0":0.6,"recall_class1":0.7183414269704893,"confusion_matrix":[[207,138],[754,1923]]}},{"feature_set":"pre_drill","buffer_km":5,"tested_n":3022,"coverage":1.0,"folds":[{"fold":1,"train_before":2417,"train_n":1417,"test_n":605,"train_class_counts":[192,1225],"minimum_train_test_km":5.016110550584443},{"fold":2,"train_before":2417,"train_n":1385,"test_n":605,"train_class_counts":[184,1201],"minimum_train_test_km":5.003975895892688},{"fold":3,"train_before":2418,"train_n":1374,"test_n":604,"train_class_counts":[172,1202],"minimum_train_test_km":5.007152544943449},{"fold":4,"train_before":2418,"train_n":1437,"test_n":604,"train_class_counts":[185,1252],"minimum_train_test_km":5.006923783565608},{"fold":5,"train_before":2418,"train_n":1447,"test_n":604,"train_class_counts":[167,1280],"minimum_train_test_km":5.003550613955589}],"metrics":{"accuracy":0.6985440105890139,"balanced_accuracy":0.5924970088732249,"macro_f1":0.5336415803092351,"recall_class0":0.45507246376811594,"recall_class1":0.7299215539783339,"confusion_matrix":[[157,188],[723,1954]]}}]},"salinity":{"n":8234,"unmapped":13,"multiple_domain_matches":11,"evaluations":[{"feature_set":"cadastre","buffer_km":0,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4572,2015],"minimum_train_test_km":0.04356742225323441},{"fold":2,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4535,2052],"minimum_train_test_km":0.04356742225323441},{"fold":3,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4463,2124],"minimum_train_test_km":0.09757056262600697},{"fold":4,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4561,2026],"minimum_train_test_km":0.06858698006038187},{"fold":5,"train_before":6588,"train_n":6588,"test_n":1646,"train_class_counts":[4521,2067],"minimum_train_test_km":0.08701904110213779}],"metrics":{"accuracy":0.7120476074811756,"balanced_accuracy":0.7722887546221308,"macro_f1":0.7071296759132393,"recall_class0":0.6118665018541409,"recall_class1":0.9327110073901206,"confusion_matrix":[[3465,2198],[173,2398]]}},{"feature_set":"geology","buffer_km":0,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4572,2015],"minimum_train_test_km":0.04356742225323441},{"fold":2,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4535,2052],"minimum_train_test_km":0.04356742225323441},{"fold":3,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4463,2124],"minimum_train_test_km":0.09757056262600697},{"fold":4,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4561,2026],"minimum_train_test_km":0.06858698006038187},{"fold":5,"train_before":6588,"train_n":6588,"test_n":1646,"train_class_counts":[4521,2067],"minimum_train_test_km":0.08701904110213779}],"metrics":{"accuracy":0.7093757590478503,"balanced_accuracy":0.7701339524174232,"macro_f1":0.7045809900409088,"recall_class0":0.6083348048737418,"recall_class1":0.9319330999611046,"confusion_matrix":[[3445,2218],[175,2396]]}},{"feature_set":"pre_drill","buffer_km":0,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4572,2015],"minimum_train_test_km":0.04356742225323441},{"fold":2,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4535,2052],"minimum_train_test_km":0.04356742225323441},{"fold":3,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4463,2124],"minimum_train_test_km":0.09757056262600697},{"fold":4,"train_before":6587,"train_n":6587,"test_n":1647,"train_class_counts":[4561,2026],"minimum_train_test_km":0.06858698006038187},{"fold":5,"train_before":6588,"train_n":6588,"test_n":1646,"train_class_counts":[4521,2067],"minimum_train_test_km":0.08701904110213779}],"metrics":{"accuracy":0.713747874666019,"balanced_accuracy":0.7726753731033184,"macro_f1":0.7085751651688218,"recall_class0":0.61575136853258,"recall_class1":0.9295993776740568,"confusion_matrix":[[3487,2176],[181,2390]]}},{"feature_set":"cadastre","buffer_km":2,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":5612,"test_n":1647,"train_class_counts":[3883,1729],"minimum_train_test_km":2.0015058344135706},{"fold":2,"train_before":6587,"train_n":5479,"test_n":1647,"train_class_counts":[3685,1794],"minimum_train_test_km":2.000226877967816},{"fold":3,"train_before":6587,"train_n":5598,"test_n":1647,"train_class_counts":[3714,1884],"minimum_train_test_km":2.0008750903150454},{"fold":4,"train_before":6587,"train_n":5628,"test_n":1647,"train_class_counts":[3865,1763],"minimum_train_test_km":2.0011565957158384},{"fold":5,"train_before":6588,"train_n":5577,"test_n":1646,"train_class_counts":[3784,1793],"minimum_train_test_km":2.0011565957158384}],"metrics":{"accuracy":0.713262084041778,"balanced_accuracy":0.7707294369141183,"macro_f1":0.7078273621029496,"recall_class0":0.6176938018717995,"recall_class1":0.9237650719564372,"confusion_matrix":[[3498,2165],[196,2375]]}},{"feature_set":"geology","buffer_km":2,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":5612,"test_n":1647,"train_class_counts":[3883,1729],"minimum_train_test_km":2.0015058344135706},{"fold":2,"train_before":6587,"train_n":5479,"test_n":1647,"train_class_counts":[3685,1794],"minimum_train_test_km":2.000226877967816},{"fold":3,"train_before":6587,"train_n":5598,"test_n":1647,"train_class_counts":[3714,1884],"minimum_train_test_km":2.0008750903150454},{"fold":4,"train_before":6587,"train_n":5628,"test_n":1647,"train_class_counts":[3865,1763],"minimum_train_test_km":2.0011565957158384},{"fold":5,"train_before":6588,"train_n":5577,"test_n":1646,"train_class_counts":[3784,1793],"minimum_train_test_km":2.0011565957158384}],"metrics":{"accuracy":0.7093757590478503,"balanced_accuracy":0.7650370996457108,"macro_f1":0.7036451431919071,"recall_class0":0.6168108776266996,"recall_class1":0.9132633216647219,"confusion_matrix":[[3493,2170],[223,2348]]}},{"feature_set":"pre_drill","buffer_km":2,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":5612,"test_n":1647,"train_class_counts":[3883,1729],"minimum_train_test_km":2.0015058344135706},{"fold":2,"train_before":6587,"train_n":5479,"test_n":1647,"train_class_counts":[3685,1794],"minimum_train_test_km":2.000226877967816},{"fold":3,"train_before":6587,"train_n":5598,"test_n":1647,"train_class_counts":[3714,1884],"minimum_train_test_km":2.0008750903150454},{"fold":4,"train_before":6587,"train_n":5628,"test_n":1647,"train_class_counts":[3865,1763],"minimum_train_test_km":2.0011565957158384},{"fold":5,"train_before":6588,"train_n":5577,"test_n":1646,"train_class_counts":[3784,1793],"minimum_train_test_km":2.0011565957158384}],"metrics":{"accuracy":0.7159339324751033,"balanced_accuracy":0.7692739684055294,"macro_f1":0.7096747783950377,"recall_class0":0.6272293837188769,"recall_class1":0.911318553092182,"confusion_matrix":[[3552,2111],[228,2343]]}},{"feature_set":"cadastre","buffer_km":5,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":2625,"test_n":1647,"train_class_counts":[1872,753],"minimum_train_test_km":5.000476252597176},{"fold":2,"train_before":6587,"train_n":2645,"test_n":1647,"train_class_counts":[1736,909],"minimum_train_test_km":5.000170715179639},{"fold":3,"train_before":6587,"train_n":2723,"test_n":1647,"train_class_counts":[1765,958],"minimum_train_test_km":5.002254621707302},{"fold":4,"train_before":6587,"train_n":2901,"test_n":1647,"train_class_counts":[2000,901],"minimum_train_test_km":5.000170715179639},{"fold":5,"train_before":6588,"train_n":2781,"test_n":1646,"train_class_counts":[1905,876],"minimum_train_test_km":5.001291366543829}],"metrics":{"accuracy":0.7154481418508623,"balanced_accuracy":0.7684960609765135,"macro_f1":0.709135805395138,"recall_class0":0.6272293837188769,"recall_class1":0.9097627382341501,"confusion_matrix":[[3552,2111],[232,2339]]}},{"feature_set":"geology","buffer_km":5,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":2625,"test_n":1647,"train_class_counts":[1872,753],"minimum_train_test_km":5.000476252597176},{"fold":2,"train_before":6587,"train_n":2645,"test_n":1647,"train_class_counts":[1736,909],"minimum_train_test_km":5.000170715179639},{"fold":3,"train_before":6587,"train_n":2723,"test_n":1647,"train_class_counts":[1765,958],"minimum_train_test_km":5.002254621707302},{"fold":4,"train_before":6587,"train_n":2901,"test_n":1647,"train_class_counts":[2000,901],"minimum_train_test_km":5.000170715179639},{"fold":5,"train_before":6588,"train_n":2781,"test_n":1646,"train_class_counts":[1905,876],"minimum_train_test_km":5.001291366543829}],"metrics":{"accuracy":0.7120476074811756,"balanced_accuracy":0.7631568934061459,"macro_f1":0.7053766519147342,"recall_class0":0.627052798869857,"recall_class1":0.8992609879424348,"confusion_matrix":[[3551,2112],[259,2312]]}},{"feature_set":"pre_drill","buffer_km":5,"tested_n":8234,"coverage":1.0,"folds":[{"fold":1,"train_before":6587,"train_n":2625,"test_n":1647,"train_class_counts":[1872,753],"minimum_train_test_km":5.000476252597176},{"fold":2,"train_before":6587,"train_n":2645,"test_n":1647,"train_class_counts":[1736,909],"minimum_train_test_km":5.000170715179639},{"fold":3,"train_before":6587,"train_n":2723,"test_n":1647,"train_class_counts":[1765,958],"minimum_train_test_km":5.002254621707302},{"fold":4,"train_before":6587,"train_n":2901,"test_n":1647,"train_class_counts":[2000,901],"minimum_train_test_km":5.000170715179639},{"fold":5,"train_before":6588,"train_n":2781,"test_n":1646,"train_class_counts":[1905,876],"minimum_train_test_km":5.001291366543829}],"metrics":{"accuracy":0.7182414379402478,"balanced_accuracy":0.7685092825181068,"macro_f1":0.7113308091431776,"recall_class0":0.634645947377715,"recall_class1":0.9023726176584986,"confusion_matrix":[[3594,2069],[251,2320]]}}]}}}</script><script src="hydro.js?v=82e96f660563"></script><script src="hydro_ui.js?v=d40e0f4b0c0e"></script></body></html>

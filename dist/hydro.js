@@ -16,7 +16,7 @@ function covers(geometry,p){if(geometry.type==='Polygon')return polygonCovers(ge
 function prepare(data){
  const segments=[];
  for(const f of data.structures.features){const lines=f.geometry.type==='LineString'?[f.geometry.coordinates]:f.geometry.coordinates;for(const line of lines)for(let i=1;i<line.length;i++)segments.push([xy(...line[i-1]),xy(...line[i]),f.id]);}
- const domains=data.domains.features.map(f=>{const points=(f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates).flat(2);return {feature:f,bounds:[Math.min(...points.map(p=>p[0])),Math.min(...points.map(p=>p[1])),Math.max(...points.map(p=>p[0])),Math.max(...points.map(p=>p[1]))]};});
+ const domains=data.domains.features.map(f=>{const polys=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates,bounds=[Infinity,Infinity,-Infinity,-Infinity];for(const poly of polys)for(const ring of poly)for(const p of ring){bounds[0]=Math.min(bounds[0],p[0]);bounds[1]=Math.min(bounds[1],p[1]);bounds[2]=Math.max(bounds[2],p[0]);bounds[3]=Math.max(bounds[3],p[1]);}return {feature:f,bounds};});
  return {segments,domains,provenance:data.provenance};
 }
 function segmentDistance(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],length=dx*dx+dy*dy,t=length?Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/length)):0;return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy);}
