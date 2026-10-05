@@ -2,7 +2,7 @@
 
 Protótipo de pesquisa aplicada para investigar poços na Paraíba, comparar cinco métodos de aprendizado de máquina e simular água, salinidade e energia com contexto climático NASA POWER.
 
-[Abrir o simulador](https://aguatwin-ia.fuganti.chatgpt.site) — o acesso inicial ao site é privado. Este repositório também foi criado como privado.
+[Abrir o simulador](https://aguatwin-ia.fuganti.chatgpt.site) — o acesso inicial ao site é privado. Este repositório foi criado como privado e está sendo preparado para divulgação pública.
 
 ## O que está implementado
 
@@ -134,3 +134,8 @@ npm test
 ```
 
 O treino usa os datasets históricos já presentes em `research`. Para reproduzir exatamente a fonte geológica congelada, extraia `research/hydro_layers_source.zip` em `research` e execute `prepare_context` de `fetch_hydrogeology.py` com suas duas FeatureCollections e a proveniência guardada; consultar a API novamente pode alterar dados e data de acesso. Não publique fichas pessoais de campo no repositório. Software verificado não substitui validação hidrogeológica prospectiva.
+
+
+## Release v2.1.1
+
+Inventário químico público e fontes auditadas em [HIDROQUIMICA_PUBLICA.md](docs/HIDROQUIMICA_PUBLICA.md). Consulte [notas do release](docs/RELEASE_v2_1_1.md). Nenhuma das 13 fichas auditadas de Cabaceiras permite avaliar CE e RAS conjuntamente. A versão não recalcula os modelos.

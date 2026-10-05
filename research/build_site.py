@@ -53,3 +53,9 @@ with zipfile.ZipFile(DIST/'metodos_IA.zip','w',zipfile.ZIP_DEFLATED) as z:
         p=ROOT/filename
         if p.exists():z.write(p,filename)
 print('site built',len(base),'characters')
+
+
+# Preserve the frozen public chemistry inventory in each site build.
+for source,target in [('research/chemistry/cabaceiras_chemistry.csv','cabaceiras_chemistry.csv'),('research/chemistry/audit.json','chemistry_audit.json'),('docs/HIDROQUIMICA_PUBLICA.md','hidroquimica_publica.md')]:
+    src=ROOT.parent/source
+    if src.exists():(DIST/target).write_bytes(src.read_bytes())

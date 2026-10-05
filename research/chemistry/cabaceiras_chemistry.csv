@@ -1,0 +1,14 @@
+id,municipality,locality,latitude,longitude,sample_id,collection_date,tds_mg_l,na_mg_l,ca_mg_l,mg_mg_l,ce_us_cm,ras,status,source_url
+2600003143,Cabaceiras,GANGORRA IV,-7.43,-36.275555,,,1995.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003143
+2600003147,Cabaceiras,CARIRISA M. GRANDE,-7.453611,-36.273333,,,2280.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003147
+2600003148,Cabaceiras,FAZENDA NOVA I,-7.511666,-36.359166,,,1234.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003148
+2600003150,Cabaceiras,PERFASA MACAMBIRA V,-7.501666,-36.3425,,,1734.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003150
+2600003151,Cabaceiras,VACA BRAVA,-7.508333,-36.374444,,,2087.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003151
+2600003152,Cabaceiras,TAPERA,-7.391666,-36.326666,,,2998.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003152
+2600003155,Cabaceiras,CARIRISA GANGORRA,-7.395,-36.258888,,,2490.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003155
+2600003157,Cabaceiras,GANGORRA,-7.396388,-36.266666,,,5419.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003157
+2600003158,Cabaceiras,CARIRISA M. GRANDE,-7.4675,-36.265,,,1200.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003158
+2600003159,Cabaceiras,MACAMBIRA II,-7.494166,-36.306388,,,2900.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003159
+2600003163,Cabaceiras,MACAMBIRA III,-7.498333,-36.31,,,3272.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003163
+2600003167,Cabaceiras,PASSASSUNGA,-7.379166,-36.2175,,,1950.0,,,,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003167
+2600003189,Cabaceiras,POCINHOS,-7.394166,-36.195,,,334.0,,38.4,16.03,,,incomplete,https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003189

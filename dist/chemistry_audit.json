@@ -1,0 +1,318 @@
+{
+  "access_date": "2026-10-05",
+  "scope": "13 Cabaceiras wells with a chemistry parameter in the consulted public layer",
+  "state_layer_records": 130,
+  "detail_pages_audited": 13,
+  "eligible_for_review": 0,
+  "notes": [
+    "The map layer is a partial export, not the complete SIAGAS chemistry database.",
+    "An unnamed concentration is never assigned to sodium.",
+    "Drilling and registration dates are not collection dates.",
+    "No independent validation or irrigation suitability is established."
+  ],
+  "sources": [
+    {
+      "id": "2600003143",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003143",
+      "sha256": "9a271db502ca37128af70fe4548ccd5abfa4abf707dae067d2eb7d1e1b9ad34f"
+    },
+    {
+      "id": "2600003147",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003147",
+      "sha256": "3e4b0473fcc6a320a77962038b999f1cdfe29a8d4021c3644a87f364c1c8f5a4"
+    },
+    {
+      "id": "2600003148",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003148",
+      "sha256": "8345e7ee3198af3d1cefc0575b74401515947e786e84ff386cb31adb38d8094c"
+    },
+    {
+      "id": "2600003150",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003150",
+      "sha256": "71157b21b8a3ea2f164035bfa14699c75725ff26a38dcf9f29571149f31ea92d"
+    },
+    {
+      "id": "2600003151",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003151",
+      "sha256": "671e03d2e8528b0705b842e5e00b3f5a1b3e26bc5b6607c87a22caae820a6615"
+    },
+    {
+      "id": "2600003152",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003152",
+      "sha256": "005eb1ecf25b4ba7d9df8eaea3e4555615620792c6a4c9977e62e5357e3ee081"
+    },
+    {
+      "id": "2600003155",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003155",
+      "sha256": "9924d47488fee88144b465795d7f9e6a6b94d9e3e8186b3d7465fc053972c187"
+    },
+    {
+      "id": "2600003157",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003157",
+      "sha256": "3c6daddcf43be776c8e3af403f9bb92ba7e7eb38a183b166e49fa63a4f041f1e"
+    },
+    {
+      "id": "2600003158",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003158",
+      "sha256": "a947d6ad9d20d77447a99d871712ac27bf28a8731a5cac7ab474f696dee23b3e"
+    },
+    {
+      "id": "2600003159",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003159",
+      "sha256": "2da4c1236d2f4800ef2f005258f6dcb31c092dfe6ec2e3cc52c79f6cdb84b097"
+    },
+    {
+      "id": "2600003163",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003163",
+      "sha256": "d5cff13403fb826092b6ed1b3645c0e7550640184b491bfecf38d64619905f06"
+    },
+    {
+      "id": "2600003167",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003167",
+      "sha256": "d52b135fe1b2381d6f88e801bf81b560c2bb20fefaf518921a85fc00a59c0d8a"
+    },
+    {
+      "id": "2600003189",
+      "url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003189",
+      "sha256": "c547f581c893f1b9b5775c70a3dee4a4ab740c63a63b041861f125bf47f89efc"
+    }
+  ],
+  "records": [
+    {
+      "id": "2600003143",
+      "municipality": "Cabaceiras",
+      "locality": "GANGORRA IV",
+      "latitude": -7.43,
+      "longitude": -36.275555,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 1995.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003143"
+    },
+    {
+      "id": "2600003147",
+      "municipality": "Cabaceiras",
+      "locality": "CARIRISA M. GRANDE",
+      "latitude": -7.453611,
+      "longitude": -36.273333,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 2280.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003147"
+    },
+    {
+      "id": "2600003148",
+      "municipality": "Cabaceiras",
+      "locality": "FAZENDA NOVA I",
+      "latitude": -7.511666,
+      "longitude": -36.359166,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 1234.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003148"
+    },
+    {
+      "id": "2600003150",
+      "municipality": "Cabaceiras",
+      "locality": "PERFASA MACAMBIRA V",
+      "latitude": -7.501666,
+      "longitude": -36.3425,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 1734.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003150"
+    },
+    {
+      "id": "2600003151",
+      "municipality": "Cabaceiras",
+      "locality": "VACA BRAVA",
+      "latitude": -7.508333,
+      "longitude": -36.374444,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 2087.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003151"
+    },
+    {
+      "id": "2600003152",
+      "municipality": "Cabaceiras",
+      "locality": "TAPERA",
+      "latitude": -7.391666,
+      "longitude": -36.326666,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 2998.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003152"
+    },
+    {
+      "id": "2600003155",
+      "municipality": "Cabaceiras",
+      "locality": "CARIRISA GANGORRA",
+      "latitude": -7.395,
+      "longitude": -36.258888,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 2490.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003155"
+    },
+    {
+      "id": "2600003157",
+      "municipality": "Cabaceiras",
+      "locality": "GANGORRA",
+      "latitude": -7.396388,
+      "longitude": -36.266666,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 5419.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003157"
+    },
+    {
+      "id": "2600003158",
+      "municipality": "Cabaceiras",
+      "locality": "CARIRISA M. GRANDE",
+      "latitude": -7.4675,
+      "longitude": -36.265,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 1200.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003158"
+    },
+    {
+      "id": "2600003159",
+      "municipality": "Cabaceiras",
+      "locality": "MACAMBIRA II",
+      "latitude": -7.494166,
+      "longitude": -36.306388,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 2900.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003159"
+    },
+    {
+      "id": "2600003163",
+      "municipality": "Cabaceiras",
+      "locality": "MACAMBIRA III",
+      "latitude": -7.498333,
+      "longitude": -36.31,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 3272.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003163"
+    },
+    {
+      "id": "2600003167",
+      "municipality": "Cabaceiras",
+      "locality": "PASSASSUNGA",
+      "latitude": -7.379166,
+      "longitude": -36.2175,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 1950.0,
+      "na_mg_l": null,
+      "ca_mg_l": null,
+      "mg_mg_l": null,
+      "unnamed_values_mg_l": [],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003167"
+    },
+    {
+      "id": "2600003189",
+      "municipality": "Cabaceiras",
+      "locality": "POCINHOS",
+      "latitude": -7.394166,
+      "longitude": -36.195,
+      "sample_id": null,
+      "collection_date": null,
+      "tds_mg_l": 334.0,
+      "na_mg_l": null,
+      "ca_mg_l": 38.4,
+      "mg_mg_l": 16.03,
+      "unnamed_values_mg_l": [
+        171.77
+      ],
+      "ce_us_cm": null,
+      "ras": null,
+      "status": "incomplete",
+      "source_url": "https://siagasweb.sgb.gov.br/layout/detalhe.php?ponto=2600003189"
+    }
+  ]
+}

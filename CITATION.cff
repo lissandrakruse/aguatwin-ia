@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Cite this version of the exploratory research software. No DOI has been assigned."
+title: "ÁguaTwin IA"
+type: software
+version: 2.1.1
+date-released: '2026-10-05'
+authors:
+  - family-names: Kruse Fuganti
+    given-names: Lissandra
+repository-code: 'https://github.com/lissandrakruse/aguatwin-ia'
+abstract: "Exploratory groundwater research in Paraíba with spatial model comparisons, operational scenarios and an auditable inventory of public chemical data."
+keywords:
+  - groundwater
+  - irrigation
+  - Paraíba
+  - SIAGAS
+  - spatial validation

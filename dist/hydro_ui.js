@@ -78,3 +78,6 @@ $('hShowMap').addEventListener('click',()=>{if(!last)return;window.AguaTwinMap?.
 ['aiLat','aiLon','aiRadius'].forEach(id=>$(id).addEventListener('input',invalidate));['aiMunicipality','aiWell','aiTask'].forEach(id=>$(id).addEventListener('change',invalidate));window.addEventListener('aguatwin-location-changed',invalidate);
 window.AguaTwinHydroUI={plan,getLast:()=>last,whenIdle:()=>pending||Promise.resolve(last),renderTests,exportPlan};
 })();
+
+
+(()=>{const host=document.getElementById('wellMapCard');if(host&&!document.getElementById('chemistryLink')){const p=document.createElement('p');const a=document.createElement('a');a.id='chemistryLink';a.href='quimica.html';a.textContent='Consultar dados químicos públicos auditados';p.appendChild(a);host.appendChild(p);}})();
