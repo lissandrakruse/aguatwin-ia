@@ -11,7 +11,10 @@
     "node": ">=22.12.0"
   },
   "devDependencies": {
-    "jsdom": "30.1.2",
-    "@napi-rs/canvas": "0.1.100"
+    "@napi-rs/canvas": "0.1.100",
+    "jsdom": "30.1.2"
+  },
+  "dependencies": {
+    "leaflet": "1.9.4"
   }
 }

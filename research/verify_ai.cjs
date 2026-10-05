@@ -8,6 +8,9 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  const errors=[],tools=[],downloads=[],canvases=new Map();let nasaReply=null,nasaFailure=false;
  const vc=new VirtualConsole();vc.on('jsdomError',e=>errors.push(e.message));
  const dom=new JSDOM(fs.readFileSync(path.join(dist,'index.html'),'utf8'),{url:'https://qa.invalid/',runScripts:'dangerously',virtualConsole:vc,beforeParse(w){
+  Object.defineProperty(w.HTMLElement.prototype,'clientWidth',{get(){return this.id==='aiMap'?700:0;}});
+  Object.defineProperty(w.HTMLElement.prototype,'clientHeight',{get(){return this.id==='aiMap'?440:0;}});
+  w.SVGSVGElement.prototype.createSVGRect=()=>({});
   Object.defineProperty(w.HTMLCanvasElement.prototype,'clientWidth',{get(){return 700;}});
   w.HTMLCanvasElement.prototype.getContext=function(){let c=canvases.get(this.id);if(!c||c.width!==this.width||c.height!==this.height){c=createCanvas(this.width,this.height);canvases.set(this.id,c);}return c.getContext('2d');};
   w.URL.createObjectURL=()=> 'blob:qa-local';w.URL.revokeObjectURL=()=>{};w.HTMLAnchorElement.prototype.click=function(){downloads.push(this.download);};
@@ -16,10 +19,15 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  }});
  const w=dom.window,d=w.document,a=w.AguaTwin;
  assert(a,'Water model initialized');assert.equal(a.daily.length,731);
- w.eval(fs.readFileSync(path.join(dist,'ai.js'),'utf8'));await w.AguaTwinAI.ready;const ai=w.AguaTwinAI;
+ for(const file of ['vendor/leaflet.js','well_map.js','ai.js'])w.eval(fs.readFileSync(path.join(dist,file),'utf8'));await w.AguaTwinAI.ready;const ai=w.AguaTwinAI;
  for(const file of ['decision.js','rural.js','hydro.js','hydro_ui.js'])w.eval(fs.readFileSync(path.join(dist,file),'utf8'));
  assert.equal(ai.state.bundle.tasks.potential.n,3022);assert.equal(ai.state.bundle.tasks.salinity.n,8234);assert.equal(d.querySelectorAll('.panel.active').length,1);assert(d.getElementById('ai').classList.contains('active'));
  assert.equal(d.getElementById('aiComparison').querySelectorAll('tbody tr').length,5);assert.equal(ai.state.lastPrediction.mode,'out-of-fold');
+ assert(ai.state.candidates.length>0,'Candidates appear without a button click');assert.equal(d.querySelectorAll('#aiMap .candidate-pin').length,Math.min(10,ai.state.candidates.length));assert(w.AguaTwinMap.getMap());
+ assert(d.getElementById('wellMapCard').compareDocumentPosition(d.getElementById('aiStats'))&w.Node.DOCUMENT_POSITION_FOLLOWING);assert(d.querySelector('[data-tab="nasa"]').hidden);assert(d.querySelector('[data-tab="field"]').hidden);
+ const clicked=ai.state.candidates[0];d.querySelector('#aiMap .candidate-pin').click();assert.equal(Number(d.getElementById('aiLat').value),clicked.latitude);assert.equal(Number(d.getElementById('aiLon').value),clicked.longitude);assert(d.getElementById('candidateSelection').textContent.includes('Local 1'));
+ d.getElementById('aiRadius').dispatchEvent(new w.Event('input'));assert.equal(ai.state.candidates.length,0);assert.equal(d.querySelectorAll('#aiMap .candidate-pin').length,0);assert(d.getElementById('exportCandidates').disabled);
+ d.getElementById('aiWell').dispatchEvent(new w.Event('change'));assert(ai.state.candidates.length>0);assert.equal(ai.state.lastPrediction.mode,'out-of-fold');
  let checked=0,maxScoreError=0;
  for(const [task,methods] of Object.entries(references))for(const [name,refs] of Object.entries(methods))for(const ref of refs){const got=ai.infer(model.tasks[task],name,ref.input);assert.equal(got.label,ref.label,`${task} ${name} at ${ref.input}`);if(ref.score!==null){const err=Math.abs(got.score-ref.score);maxScoreError=Math.max(maxScoreError,err);assert(err<1e-8,`${task} ${name} score diff ${err}`);}checked++;}
  // Every observation stays in one geographical fold; no fabricated negative labels.
@@ -43,7 +51,7 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  // WebMCP uses the same validation and visible UI. Invalid actions leave input unchanged.
  assert.equal(tools.length,1);const valid=ai.inputs(),before=[...valid];await assert.rejects(tools[0].execute({latitude:-23,longitude:-46,depth_m:60}),/fora/);assert.deepEqual(Array.from(ai.inputs()),Array.from(before));
  const toolResult=await tools[0].execute({latitude:valid[0],longitude:valid[1],depth_m:valid[2],task:'potential'});assert.equal(JSON.parse(toolResult.content[0].text).input[0],valid[0]);assert.equal(Number(d.getElementById('aiLat').value),valid[0]);
- d.getElementById('aiTask').value='salinity';d.getElementById('aiTask').dispatchEvent(new w.Event('change'));assert.equal(ai.state.task,'salinity');assert(d.getElementById('aiStats').textContent.includes('8.234'));assert.equal(d.getElementById('aiPrediction').querySelectorAll('tbody tr').length,5);
+ d.getElementById('aiTask').value='salinity';d.getElementById('aiTask').dispatchEvent(new w.Event('change'));assert.equal(ai.state.task,'salinity');assert.equal(d.querySelectorAll('#aiMap .candidate-pin').length,0);assert(d.getElementById('exportCandidates').disabled);assert(d.getElementById('aiStats').textContent.includes('8.234'));assert.equal(d.getElementById('aiPrediction').querySelectorAll('tbody tr').length,5);
 
  // The rural strategy uses measured-flow inputs and includes treatment constraints.
  assert.equal(w.AguaTwinRural.getLast().strategies.production,'A');
@@ -60,6 +68,6 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  d.getElementById('aiWell').dispatchEvent(new w.Event('change'));assert.equal(w.AguaTwinHydroUI.getLast(),null);assert(d.getElementById('hExport').disabled);
  assert.deepEqual(errors,[]);
  fs.writeFileSync(path.join(__dirname,'qa_benchmark.png'),canvases.get('aiBenchmark').toBuffer('image/png'));
- const report={passed:true,independent_python_predictions_checked:checked,max_score_error:maxScoreError,checks:['shared spatial groups','authentic outcome labels','Python-to-browser model inference','out-of-fold selected-record display','candidate domain and ranking','water and salt balance','NASA valid response and retained state on failure','NASA units and daily completeness','WebMCP valid/invalid action contracts','task switching and downloads','rural treatment strategies and stale-state invalidation','NASA monthly energy estimate','geological field plan support, report and stale-state invalidation'],environment:'jsdom DOM execution and native canvas; full browser layout not tested; WebMCP context stubbed'};
+ const report={passed:true,independent_python_predictions_checked:checked,max_score_error:maxScoreError,checks:['shared spatial groups','authentic outcome labels','Python-to-browser model inference','out-of-fold selected-record display','candidate domain and ranking','automatic geographic map, clicked coordinates and stale-point removal','map-first interface with legacy climate tools hidden','water and salt balance','NASA valid response and retained state on failure','NASA units and daily completeness','WebMCP valid/invalid action contracts','task switching and downloads','rural treatment strategies and stale-state invalidation','NASA monthly energy estimate','geological field plan support, report and stale-state invalidation'],environment:'jsdom DOM execution and native canvas; full browser layout not tested; WebMCP context stubbed'};
  fs.writeFileSync(path.join(__dirname,'qa_result.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));dom.window.close();
 })().catch(e=>{console.error(e);process.exit(1);});
