@@ -4,6 +4,7 @@ const {createCanvas}=require('@napi-rs/canvas');
 const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
 (async()=>{
  const model=JSON.parse(fs.readFileSync(path.join(dist,'ai_models.json'),'utf8')),boundary=JSON.parse(fs.readFileSync(path.join(dist,'paraiba_boundary.json'),'utf8')),references=JSON.parse(fs.readFileSync(path.join(__dirname,'reference_predictions.json'),'utf8'));
+ const hydroData=Object.fromEntries(['hydro_context.json','hydro_models.json','hydro_validation.json'].map(n=>[n,JSON.parse(fs.readFileSync(path.join(dist,n),'utf8'))]));
  const errors=[],tools=[],downloads=[],canvases=new Map();let nasaReply=null,nasaFailure=false;
  const vc=new VirtualConsole();vc.on('jsdomError',e=>errors.push(e.message));
  const dom=new JSDOM(fs.readFileSync(path.join(dist,'index.html'),'utf8'),{url:'https://qa.invalid/',runScripts:'dangerously',virtualConsole:vc,beforeParse(w){
@@ -11,11 +12,12 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
   w.HTMLCanvasElement.prototype.getContext=function(){let c=canvases.get(this.id);if(!c||c.width!==this.width||c.height!==this.height){c=createCanvas(this.width,this.height);canvases.set(this.id,c);}return c.getContext('2d');};
   w.URL.createObjectURL=()=> 'blob:qa-local';w.URL.revokeObjectURL=()=>{};w.HTMLAnchorElement.prototype.click=function(){downloads.push(this.download);};
   w.document.modelContext={registerTool:t=>tools.push(t)};
-  w.fetch=async url=>{if(String(url)==='ai_models.json')return {ok:true,json:async()=>model};if(String(url)==='paraiba_boundary.json')return {ok:true,json:async()=>boundary};if(String(url).startsWith('https://power.larc.nasa.gov/api/')){if(nasaFailure)throw Error('Injected network failure');return {ok:true,json:async()=>nasaReply};}throw Error('Unexpected fetch '+url);};
+  w.fetch=async url=>{if(hydroData[String(url)])return {ok:true,json:async()=>hydroData[String(url)]};if(String(url)==='ai_models.json')return {ok:true,json:async()=>model};if(String(url)==='paraiba_boundary.json')return {ok:true,json:async()=>boundary};if(String(url).startsWith('https://power.larc.nasa.gov/api/')){if(nasaFailure)throw Error('Injected network failure');return {ok:true,json:async()=>nasaReply};}throw Error('Unexpected fetch '+url);};
  }});
  const w=dom.window,d=w.document,a=w.AguaTwin;
  assert(a,'Water model initialized');assert.equal(a.daily.length,731);
  w.eval(fs.readFileSync(path.join(dist,'ai.js'),'utf8'));await w.AguaTwinAI.ready;const ai=w.AguaTwinAI;
+ for(const file of ['decision.js','rural.js','hydro.js','hydro_ui.js'])w.eval(fs.readFileSync(path.join(dist,file),'utf8'));
  assert.equal(ai.state.bundle.tasks.potential.n,3022);assert.equal(ai.state.bundle.tasks.salinity.n,8234);assert.equal(d.querySelectorAll('.panel.active').length,1);assert(d.getElementById('ai').classList.contains('active'));
  assert.equal(d.getElementById('aiComparison').querySelectorAll('tbody tr').length,5);assert.equal(ai.state.lastPrediction.mode,'out-of-fold');
  let checked=0,maxScoreError=0;
@@ -42,8 +44,22 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  assert.equal(tools.length,1);const valid=ai.inputs(),before=[...valid];await assert.rejects(tools[0].execute({latitude:-23,longitude:-46,depth_m:60}),/fora/);assert.deepEqual(Array.from(ai.inputs()),Array.from(before));
  const toolResult=await tools[0].execute({latitude:valid[0],longitude:valid[1],depth_m:valid[2],task:'potential'});assert.equal(JSON.parse(toolResult.content[0].text).input[0],valid[0]);assert.equal(Number(d.getElementById('aiLat').value),valid[0]);
  d.getElementById('aiTask').value='salinity';d.getElementById('aiTask').dispatchEvent(new w.Event('change'));assert.equal(ai.state.task,'salinity');assert(d.getElementById('aiStats').textContent.includes('8.234'));assert.equal(d.getElementById('aiPrediction').querySelectorAll('tbody tr').length,5);
+
+ // The rural strategy uses measured-flow inputs and includes treatment constraints.
+ assert.equal(w.AguaTwinRural.getLast().strategies.production,'A');
+ assert.equal(w.AguaTwinRural.getLast().strategies.conditional_treated_water,'B');
+ d.querySelector('[data-tab="rural"]').click();assert(d.getElementById('rural').classList.contains('active'));
+ d.getElementById('rEnergy').value=0;d.getElementById('rEnergy').dispatchEvent(new w.Event('input'));assert.equal(w.AguaTwinRural.getLast(),null);assert(d.getElementById('rDownload').disabled);
+ d.getElementById('rCompare').click();assert.equal(w.AguaTwinRural.getLast().strategies.conditional_treated_water,null);
+ d.getElementById('rEnergy').value=18;d.getElementById('rCompare').click();d.getElementById('rDownload').click();assert(downloads.includes('AguaTwin_comparacao_condicional.json'));
+ d.getElementById('rNASA').click();assert(w.AguaTwinRural.getLast().conditions.available_kwh_day>0);assert(d.getElementById('rNasaNote').textContent.includes('Média histórica'));
+ d.querySelector('[data-tab="ai"]').click();d.getElementById('aiLat').value=-7.49;d.getElementById('aiLon').value=-36.29;d.getElementById('aiRadius').value=3;
+ await w.AguaTwinHydroUI.plan();const fieldPlan=w.AguaTwinHydroUI.getLast();assert(fieldPlan&&fieldPlan.candidates.length>0&&fieldPlan.proposed_visits.length>0);assert.equal(d.getElementById('hValidation').querySelectorAll('tbody tr').length,18);
+ for(const c of fieldPlan.candidates){assert(c.nearest_production_km>=.15&&c.nearest_production_km<=5);assert(c.nearest_salinity_km<=5);assert.equal(c.domain_polygon_matches,1);assert(ai.insideBoundary([c.latitude,c.longitude]));}
+ d.getElementById('hExport').click();assert(downloads.includes('AguaTwin_plano_investigacao.json'));
+ d.getElementById('aiWell').dispatchEvent(new w.Event('change'));assert.equal(w.AguaTwinHydroUI.getLast(),null);assert(d.getElementById('hExport').disabled);
  assert.deepEqual(errors,[]);
  fs.writeFileSync(path.join(__dirname,'qa_benchmark.png'),canvases.get('aiBenchmark').toBuffer('image/png'));
- const report={passed:true,independent_python_predictions_checked:checked,max_score_error:maxScoreError,checks:['shared spatial groups','authentic outcome labels','Python-to-browser model inference','out-of-fold selected-record display','candidate domain and ranking','water and salt balance','NASA valid response and retained state on failure','NASA units and daily completeness','WebMCP valid/invalid action contracts','task switching and downloads'],environment:'jsdom DOM execution and native canvas; full browser layout not tested; WebMCP context stubbed'};
+ const report={passed:true,independent_python_predictions_checked:checked,max_score_error:maxScoreError,checks:['shared spatial groups','authentic outcome labels','Python-to-browser model inference','out-of-fold selected-record display','candidate domain and ranking','water and salt balance','NASA valid response and retained state on failure','NASA units and daily completeness','WebMCP valid/invalid action contracts','task switching and downloads','rural treatment strategies and stale-state invalidation','NASA monthly energy estimate','geological field plan support, report and stale-state invalidation'],environment:'jsdom DOM execution and native canvas; full browser layout not tested; WebMCP context stubbed'};
  fs.writeFileSync(path.join(__dirname,'qa_result.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));dom.window.close();
 })().catch(e=>{console.error(e);process.exit(1);});

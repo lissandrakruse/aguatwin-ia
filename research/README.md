@@ -18,3 +18,11 @@ NASA POWER daily API provides precipitation, air temperature and solar irradiati
 Candidate points are an exploratory grid ranked by the final Random Forest score. They need hydrogeological verification, access and legal checks, and suitable geophysics before any drilling decision. Water availability needs a pumping test; drinking-water safety needs chemical and microbiological laboratory analysis. This prototype is not a calibrated hydrogeological digital twin.
 
 Related research: Souza et al. (2023), doi:10.14393/rbcv75n0a-65381; Vio et al. (2025), doi:10.28998/contegeo.10i.24.18434. Their existence does not establish novelty for this combination; a systematic novelty review and independent field validation remain to be done.
+
+## v2.1 extension
+
+Run `fetch_hydrogeology.py`, then `train_hydrogeology.py` with Shapely 2.1.2 and the pinned NumPy/scikit-learn versions. Raw descriptive SGB layers are preserved in `hydro_layers_source.zip` with provenance and hashes. `dist/hydro_context.json` is the shared simplified geometry used by training and browser. Unzipped raw layers and `hydro_features.json` are regeneratable outputs, ignored by Git. The geological RF comparison uses the same spatial splits with 0/2/5 km buffers, fixed feature sets and train-only category encoding. No observed depth is required by the deployed new-site RF. Geological inputs did not improve the production task. Scores and tree dispersion are exploratory, uncalibrated quantities.
+
+`import_field_reports.py` audits human-reviewed dated evidence; community text creates investigation leads only. No field reports have been collected or used in current training. Future measured outcomes must remain distinct from historical SIAGAS status and reserve independent sites/time periods before model updates.
+
+The decision module conserves water and salts under common energy/cost constraints. Initial alternatives are hypothetical. The conditional-volume criterion considers only a user-selected salt limit and cannot certify drinking water or irrigation suitability. See `docs/AGUA_RURAL_NORDESTE.md` for the prospective rural protocol and `docs/RESULTADOS_V2_1.md` for all 18 evaluation configurations. `npm test` runs DOM/model/physics and report-audit verification; it is not field validation.

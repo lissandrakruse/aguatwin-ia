@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "geological_python_reference_cases": 30,
+  "max_structure_distance_error_km": 7.105427357601002e-15,
+  "max_score_or_tree_std_error": 1.1102230246251565e-15,
+  "buffered_configurations_checked": 18,
+  "treatment_conservation_scenarios": 48,
+  "max_salt_residual_kg": 1.4210854715202004e-14,
+  "checks": [
+    "derived domain and polygon-hole boundary handling",
+    "Python-to-JavaScript geological RF predictions",
+    "buffer distances and full held-out coverage",
+    "shared energy/budget and water/salt balance",
+    "strategy difference in hypothetical examples",
+    "missing/invalid input rejection",
+    "spatial visit separation"
+  ],
+  "limitations": [
+    "Software verification is not field validation",
+    "Full browser layout not tested"
+  ]
+}

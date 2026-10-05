@@ -1,8 +1,7 @@
-.venv/
-__pycache__/
-*.py[cod]
-.env
-.env.*
 node_modules/
-*.log
-.DS_Store
+__pycache__/
+*.pyc
+research/hydro_domains.geojson
+research/hydro_structures.geojson
+research/hydro_features.json
+*.tar.gz

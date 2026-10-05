@@ -23,7 +23,7 @@ Consulta pública SGB/SIAGAS em **04/10/2026**, com duas amostras:
 
 Na tarefa de produção, 24 registros que combinavam situação `Seco` e vazão específica positiva foram excluídos por contradição. A ausência de dados de produção não foi convertida em poço seco. A situação cadastral não informa, por si só, o resultado de uma nova perfuração.
 
-As entradas dos modelos são **latitude, longitude e profundidade do poço**. Para um ponto novo, a profundidade é um cenário escolhido, sem interpretação causal de quanto se deveria perfurar. NASA POWER alimenta o cenário operacional; **ainda não é preditor dos modelos de poços**.
+As entradas dos cinco modelos originais (v2.0) são **latitude, longitude e profundidade do poço**. O Random Forest geológico da v2.1 pode avaliar locais futuros sem profundidade observada. Para um ponto novo, a profundidade é um cenário escolhido, sem interpretação causal de quanto se deveria perfurar. NASA POWER alimenta o cenário operacional; **ainda não é preditor dos modelos de poços**.
 
 Cinco partições de validação espacial usam células de 0,04°. A padronização e a associação dos grupos K-means às classes são ajustadas somente no treino. Todos os métodos usam os mesmos grupos de teste. A tabela apresenta acurácia balanceada calculada a partir das previsões fora do treino:
 
@@ -82,7 +82,7 @@ O teste executa os casos numéricos no DOM, compara as referências Python expor
 
 **Pergunta proposta:** uma estratégia que considera produção, qualidade e tratamento prioriza locais com maior volume aproveitável sob restrições de energia, em comparação com uma estratégia que considera somente produção?
 
-Veja [a análise de originalidade](docs/ORIGINALIDADE.md) e [o protocolo experimental proposto](docs/PROTOCOLO_EXPERIMENTAL.md). A integração decisória e a validação prospectiva descritas nesses documentos são etapas planejadas. O protótipo atual ainda não demonstrou originalidade científica nem eficácia dessa estratégia conjunta.
+Veja [a análise de originalidade](docs/ORIGINALIDADE.md) e [o protocolo experimental proposto](docs/PROTOCOLO_EXPERIMENTAL.md). A integração decisória exploratória foi acrescentada na v2.1; a validação prospectiva descrita nesses documentos continua planejada. O protótipo atual ainda não demonstrou originalidade científica nem eficácia dessa estratégia conjunta.
 
 ## Estrutura
 
@@ -92,7 +92,7 @@ Veja [a análise de originalidade](docs/ORIGINALIDADE.md) e [o protocolo experim
 
 ## Limites da interpretação
 
-Faltam datas de medição, variáveis hidrogeológicas e validação independente. A validação espacial não aplica faixa de isolamento entre células vizinhas. A amostra cadastral não representa uma seleção aleatória de todo o estado. A regra de 5 km do registro mais próximo é um limite prático de exploração, sem garantia de aplicabilidade hidrogeológica.
+Faltam datas de medição e validação independente. Os cinco métodos originais não usam geologia nem isolamento entre células vizinhas. A v2.1 acrescenta um Random Forest com geologia regional e faixas de 0, 2 e 5 km, mantendo os resultados completos e suas limitações. A amostra cadastral não representa uma seleção aleatória de todo o estado. A regra de 5 km do registro mais próximo é um limite prático de exploração, sem garantia de aplicabilidade hidrogeológica.
 
 CE indica salinidade e não certifica potabilidade. O cenário operacional ainda precisa de calibração do tratamento e da energia, inclusive bombeamento, incrustação e armazenamento. O sistema é um simulador exploratório com possibilidade de evolução para gêmeo digital calibrado em campo.
 
@@ -106,3 +106,31 @@ CE indica salinidade e não certifica potabilidade. O cenário operacional ainda
 - Riaz et al. (2024), [potencial de água subterrânea e qualidade da água](https://doi.org/10.1038/s41598-024-76607-3).
 
 O código ainda não recebeu uma licença de distribuição escolhida pelo responsável. As fontes de dados mantêm sua autoria e seus próprios termos.
+
+
+## Atualização v2.1 — investigação e contribuição rural
+
+A versão 2.1 acrescenta o mapa hidrogeológico oficial da Paraíba, treino Random Forest sem profundidade para locais futuros e 18 comparações com/sem geologia e faixas de isolamento espacial de 0, 2 e 5 km. Acrescentar geologia regional não melhorou a classificação de produção nesta avaliação. Escores não são probabilidades calibradas; não foram descobertos novos poços.
+
+O plano de visitas usa dispersão entre árvores e separação espacial como heurísticas a testar. A aba **Água útil e campo** compara produção bruta com volume tratado sob energia e orçamento comuns, usando exemplos iniciais hipotéticos. O volume condicional considera apenas um critério experimental de sais, sem certificar água para beber ou irrigar.
+
+O auditor de fichas separa relatos comunitários de testes datados e revisados. Relatos ainda não foram coletados; não entram no treino atual. Falha de bomba, vazão ausente e evidência contraditória ficam pendentes. A nova coorte de campo deve reservar locais e períodos para validação independente.
+
+- [Protocolo e hipótese social/rural](docs/AGUA_RURAL_NORDESTE.md)
+- [Resultados e limitações v2.1](docs/RESULTADOS_V2_1.md)
+- [Resultados completos de validação](dist/hydro_validation.json)
+- [Fontes geológicas brutas compactadas](research/hydro_layers_source.zip), com URLs e hashes em [hydro_provenance.json](research/hydro_provenance.json)
+- [Ficha vazia de campo](research/field_report_template.json)
+
+Reprodução adicional:
+
+```sh
+python3 -m pip install -r requirements.txt
+python3 research/fetch_hydrogeology.py
+OPENBLAS_NUM_THREADS=1 python3 research/train_hydrogeology.py
+python3 research/build_site.py
+npm ci
+npm test
+```
+
+O treino usa os datasets históricos já presentes em `research`. Para reproduzir exatamente a fonte geológica congelada, extraia `research/hydro_layers_source.zip` em `research` e execute `prepare_context` de `fetch_hydrogeology.py` com suas duas FeatureCollections e a proveniência guardada; consultar a API novamente pode alterar dados e data de acesso. Não publique fichas pessoais de campo no repositório. Software verificado não substitui validação hidrogeológica prospectiva.

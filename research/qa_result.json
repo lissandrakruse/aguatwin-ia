@@ -12,7 +12,10 @@
     "NASA valid response and retained state on failure",
     "NASA units and daily completeness",
     "WebMCP valid/invalid action contracts",
-    "task switching and downloads"
+    "task switching and downloads",
+    "rural treatment strategies and stale-state invalidation",
+    "NASA monthly energy estimate",
+    "geological field plan support, report and stale-state invalidation"
   ],
   "environment": "jsdom DOM execution and native canvas; full browser layout not tested; WebMCP context stubbed"
 }

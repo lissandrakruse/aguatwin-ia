@@ -1,0 +1,1588 @@
+{
+  "version": "2.1",
+  "source": {
+    "provider": "SGB/CPRM",
+    "service": "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer",
+    "accessed_utc": "2026-10-05T10:24:50.115113+00:00",
+    "map_reference": "Brito & Paula, 2019",
+    "catalog_url": "https://rigeo.sgb.gov.br/handle/doc/21598",
+    "excluded_predictor_layers": [
+      0,
+      1,
+      4,
+      6,
+      7,
+      8,
+      9
+    ],
+    "excluded_reason": "Avoid target-derived conductivity, productivity and well-density information; use descriptive structures and hydrolithological domains only.",
+    "layers": {
+      "structures": {
+        "id": 2,
+        "name": "Estruturas embasamento fraturado",
+        "features": 841,
+        "metadata_url": "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2?f=pjson",
+        "ids_url": "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2/query?where=1%3D1&returnIdsOnly=true&f=json",
+        "query_urls": [
+          "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2/query?objectIds=460%2C461%2C462%2C463%2C464%2C465%2C466%2C467%2C468%2C469%2C470%2C471%2C472%2C473%2C474%2C475%2C476%2C477%2C478%2C479%2C480%2C481%2C482%2C483%2C484%2C485%2C486%2C487%2C488%2C489%2C490%2C491%2C492%2C493%2C494%2C495%2C496%2C497%2C498%2C499%2C500%2C501%2C502%2C503%2C504%2C505%2C506%2C507%2C508%2C509%2C510%2C511%2C512%2C513%2C514%2C515%2C516%2C517%2C518%2C519%2C520%2C521%2C522%2C523%2C524%2C525%2C526%2C527%2C528%2C529%2C530%2C531%2C532%2C533%2C534%2C535%2C536%2C537%2C538%2C539%2C540%2C541%2C542%2C543%2C544%2C545%2C546%2C547%2C548%2C549%2C550%2C551%2C552%2C553%2C554%2C555%2C556%2C557%2C558%2C559%2C560%2C561%2C562%2C563%2C564%2C565%2C566%2C567%2C568%2C569%2C570%2C571%2C572%2C573%2C574%2C575%2C576%2C577%2C578%2C579%2C580%2C581%2C582%2C583%2C584%2C585%2C586%2C587%2C588%2C589%2C590%2C591%2C592%2C593%2C594%2C595%2C596%2C597%2C598%2C599%2C600%2C601%2C602%2C603%2C604%2C605%2C606%2C607%2C608%2C609%2C610%2C611%2C612%2C613%2C614%2C615%2C616%2C617%2C618%2C619%2C620%2C621%2C622%2C623%2C624%2C625%2C626%2C627%2C628%2C629%2C630%2C631%2C632%2C633%2C634%2C635%2C636%2C637%2C638%2C639%2C640%2C641%2C642%2C643%2C644%2C645%2C646%2C647%2C648%2C649%2C650%2C651%2C652%2C653%2C654%2C655%2C656%2C657%2C658%2C659%2C660%2C661%2C662%2C663%2C664%2C665%2C666%2C667%2C668%2C669%2C670%2C671%2C672%2C673%2C674%2C675%2C676%2C677%2C678%2C679%2C680%2C681%2C682%2C683%2C684%2C685%2C686%2C687%2C688%2C689%2C690%2C691%2C692%2C693%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701%2C702%2C703%2C704%2C705%2C706%2C707%2C708%2C709%2C710%2C711%2C712%2C713%2C714%2C715%2C716%2C717%2C718%2C719%2C720%2C721%2C722%2C723%2C724%2C725%2C726%2C727%2C728%2C729%2C730%2C731%2C732%2C733%2C734%2C735%2C736%2C737%2C738%2C739%2C740%2C741%2C742%2C743%2C744%2C745%2C746%2C747%2C748%2C749%2C750%2C751%2C752%2C753%2C754%2C755%2C756%2C757%2C758%2C759%2C760%2C761%2C762%2C763%2C764%2C765%2C766%2C767%2C768%2C769%2C770%2C771%2C772%2C773%2C774%2C775%2C776%2C777%2C778%2C779%2C780%2C781%2C782%2C783%2C784%2C785%2C786%2C787%2C788%2C789%2C790%2C791%2C792%2C793%2C794%2C795%2C796%2C797%2C798%2C799%2C800%2C801%2C802%2C803%2C804%2C805%2C806%2C807%2C808%2C809%2C810%2C811%2C812%2C813%2C814%2C815%2C816%2C817%2C818%2C819%2C820%2C821%2C822%2C823%2C824%2C825%2C826%2C827%2C828%2C829%2C830%2C831%2C832%2C833%2C834%2C835%2C836%2C837%2C838%2C839%2C840%2C841%2C842%2C843%2C844%2C845%2C846%2C847%2C848%2C849%2C850%2C851%2C852%2C853%2C854%2C855%2C856%2C857%2C858%2C859&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson",
+          "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2/query?objectIds=860%2C861%2C862%2C863%2C864%2C865%2C866%2C867%2C868%2C869%2C870%2C871%2C872%2C873%2C874%2C875%2C876%2C877%2C878%2C879%2C880%2C881%2C882%2C883%2C884%2C885%2C886%2C887%2C888%2C889%2C890%2C891%2C892%2C893%2C894%2C895%2C896%2C897%2C898%2C899%2C900%2C901%2C902%2C903%2C904%2C905%2C906%2C907%2C908%2C909%2C910%2C911%2C912%2C913%2C914%2C915%2C916%2C917%2C918%2C919%2C920%2C921%2C922%2C923%2C924%2C925%2C926%2C927%2C928%2C929%2C930%2C931%2C932%2C933%2C934%2C935%2C936%2C937%2C938%2C939%2C940%2C941%2C942%2C943%2C944%2C945%2C946%2C947%2C948%2C949%2C950%2C951%2C952%2C953%2C954%2C955%2C956%2C957%2C958%2C959%2C960%2C961%2C962%2C963%2C964%2C965%2C966%2C967%2C968%2C969%2C970%2C971%2C972%2C973%2C974%2C975%2C976%2C977%2C978%2C979%2C980%2C981%2C982%2C983%2C984%2C985%2C986%2C987%2C988%2C989%2C990%2C991%2C992%2C993%2C994%2C995%2C996%2C997%2C998%2C999%2C1000%2C1001%2C1002%2C1003%2C1004%2C1005%2C1006%2C1007%2C1008%2C1009%2C1010%2C1011%2C1012%2C1013%2C1014%2C1015%2C1016%2C1017%2C1018%2C1019%2C1020%2C1021%2C1022%2C1023%2C1024%2C1025%2C1026%2C1027%2C1028%2C1029%2C1030%2C1031%2C1032%2C1033%2C1034%2C1035%2C1036%2C1037%2C1038%2C1039%2C1040%2C1041%2C1042%2C1043%2C1044%2C1045%2C1046%2C1047%2C1048%2C1049%2C1050%2C1051%2C1052%2C1053%2C1054%2C1055%2C1056%2C1057%2C1058%2C1059%2C1060%2C1061%2C1062%2C1063%2C1064%2C1065%2C1066%2C1067%2C1068%2C1069%2C1070%2C1071%2C1072%2C1073%2C1074%2C1075%2C1076%2C1077%2C1078%2C1079%2C1080%2C1081%2C1082%2C1083%2C1084%2C1085%2C1086%2C1087%2C1088%2C1089%2C1090%2C1091%2C1092%2C1093%2C1094%2C1095%2C1096%2C1097%2C1098%2C1099%2C1100%2C1101%2C1102%2C1103%2C1104%2C1105%2C1106%2C1107%2C1108%2C1109%2C1110%2C1111%2C1112%2C1113%2C1114%2C1115%2C1116%2C1117%2C1118%2C1119%2C1120%2C1121%2C1122%2C1123%2C1124%2C1125%2C1126%2C1127%2C1128%2C1129%2C1130%2C1131%2C1132%2C1133%2C1134%2C1135%2C1136%2C1137%2C1138%2C1139%2C1140%2C1141%2C1142%2C1143%2C1144%2C1145%2C1146%2C1147%2C1148%2C1149%2C1150%2C1151%2C1152%2C1153%2C1154%2C1155%2C1156%2C1157%2C1158%2C1159%2C1160%2C1161%2C1162%2C1163%2C1164%2C1165%2C1166%2C1167%2C1168%2C1169%2C1170%2C1171%2C1172%2C1173%2C1174%2C1175%2C1176%2C1177%2C1178%2C1179%2C1180%2C1181%2C1182%2C1183%2C1184%2C1185%2C1186%2C1187%2C1188%2C1189%2C1190%2C1191%2C1192%2C1193%2C1194%2C1195%2C1196%2C1197%2C1198%2C1199%2C1200%2C1201%2C1202%2C1203%2C1204%2C1205%2C1206%2C1207%2C1208%2C1209%2C1210%2C1211%2C1212%2C1213%2C1214%2C1215%2C1216%2C1217%2C1218%2C1219%2C1220%2C1221%2C1222%2C1223%2C1224%2C1225%2C1226%2C1227%2C1228%2C1229%2C1230%2C1231%2C1232%2C1233%2C1234%2C1235%2C1236%2C1237%2C1238%2C1239%2C1240%2C1241%2C1242%2C1243%2C1244%2C1245%2C1246%2C1247%2C1248%2C1249%2C1250%2C1251%2C1252%2C1253%2C1254%2C1255%2C1256%2C1257%2C1258%2C1259&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson",
+          "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/2/query?objectIds=1260%2C1261%2C1262%2C1263%2C1264%2C1265%2C1266%2C1267%2C1268%2C1269%2C1270%2C1271%2C1272%2C1273%2C1274%2C1275%2C1276%2C1277%2C1278%2C1279%2C1280%2C1281%2C1282%2C1283%2C1284%2C1285%2C1286%2C1287%2C1288%2C1289%2C1290%2C1291%2C1292%2C1293%2C1294%2C1295%2C1296%2C1297%2C1298%2C1299%2C1300&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson"
+        ],
+        "sha256": "5998077a38d3e3a4eba634386a507af476dd98102458066ab146d7c7d0e77bd7",
+        "source_crs": {
+          "wkid": 4674,
+          "latestWkid": 4674,
+          "xyTolerance": 8.983152841195213e-09,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -400,
+          "falseY": -400,
+          "xyUnits": 11258999068426.24,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        },
+        "output_crs": "EPSG:4326",
+        "copyright": ""
+      },
+      "domains": {
+        "id": 5,
+        "name": "Domínio Hidrolitológico",
+        "features": 523,
+        "metadata_url": "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/5?f=pjson",
+        "ids_url": "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/5/query?where=1%3D1&returnIdsOnly=true&f=json",
+        "query_urls": [
+          "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/5/query?objectIds=119%2C120%2C121%2C122%2C123%2C124%2C125%2C126%2C127%2C128%2C129%2C130%2C131%2C132%2C133%2C134%2C135%2C136%2C137%2C138%2C139%2C140%2C141%2C142%2C143%2C144%2C145%2C146%2C147%2C148%2C149%2C150%2C151%2C152%2C153%2C154%2C155%2C156%2C157%2C158%2C159%2C160%2C161%2C162%2C163%2C164%2C165%2C166%2C167%2C168%2C169%2C170%2C171%2C172%2C173%2C174%2C175%2C176%2C177%2C178%2C179%2C180%2C181%2C182%2C183%2C184%2C185%2C186%2C187%2C188%2C189%2C190%2C191%2C192%2C193%2C194%2C195%2C196%2C197%2C198%2C199%2C200%2C201%2C202%2C203%2C204%2C205%2C206%2C207%2C208%2C209%2C210%2C211%2C212%2C213%2C214%2C215%2C216%2C217%2C218%2C219%2C220%2C221%2C222%2C223%2C224%2C225%2C226%2C227%2C228%2C229%2C230%2C231%2C232%2C233%2C234%2C235%2C236%2C237%2C238%2C239%2C240%2C241%2C242%2C243%2C244%2C245%2C246%2C247%2C248%2C249%2C250%2C251%2C252%2C253%2C254%2C255%2C256%2C257%2C258%2C259%2C260%2C261%2C262%2C263%2C264%2C265%2C266%2C267%2C268%2C269%2C270%2C271%2C272%2C273%2C274%2C275%2C276%2C277%2C278%2C279%2C280%2C281%2C282%2C283%2C284%2C285%2C286%2C287%2C288%2C289%2C290%2C291%2C292%2C293%2C294%2C295%2C296%2C297%2C298%2C299%2C300%2C301%2C302%2C303%2C304%2C305%2C306%2C307%2C308%2C309%2C310%2C311%2C312%2C313%2C314%2C315%2C316%2C317%2C318%2C319%2C320%2C321%2C322%2C323%2C324%2C325%2C326%2C327%2C328%2C329%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C338%2C339%2C340%2C341%2C342%2C343%2C344%2C345%2C346%2C347%2C348%2C349%2C350%2C351%2C352%2C353%2C354%2C355%2C356%2C357%2C358%2C359%2C360%2C361%2C362%2C363%2C364%2C365%2C366%2C367%2C368%2C369%2C370%2C371%2C372%2C373%2C374%2C375%2C376%2C377%2C378%2C379%2C380%2C381%2C382%2C383%2C384%2C385%2C386%2C387%2C388%2C389%2C390%2C391%2C392%2C393%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C402%2C403%2C404%2C405%2C406%2C407%2C408%2C409%2C410%2C411%2C412%2C413%2C414%2C415%2C416%2C417%2C418%2C419%2C420%2C421%2C422%2C423%2C424%2C425%2C426%2C427%2C428%2C429%2C430%2C431%2C432%2C433%2C434%2C435%2C436%2C437%2C438%2C439%2C440%2C441%2C442%2C443%2C444%2C445%2C446%2C447%2C448%2C449%2C450%2C451%2C452%2C453%2C454%2C455%2C456%2C457%2C458%2C459%2C460%2C461%2C462%2C463%2C464%2C465%2C466%2C467%2C468%2C469%2C470%2C471%2C472%2C473%2C474%2C475%2C476%2C477%2C478%2C479%2C480%2C481%2C482%2C483%2C484%2C485%2C486%2C487%2C488%2C489%2C490%2C491%2C492%2C493%2C494%2C495%2C496%2C497%2C498%2C499%2C500%2C501%2C502%2C503%2C504%2C505%2C506%2C507%2C508%2C509%2C510%2C511%2C512%2C513%2C514%2C515%2C516%2C517%2C518&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson",
+          "https://geoportal.sgb.gov.br/server/rest/services/hidrologia/Mapa_Midrogeologico_Paraiba/FeatureServer/5/query?objectIds=519%2C520%2C521%2C522%2C523%2C524%2C525%2C526%2C527%2C528%2C529%2C530%2C531%2C532%2C533%2C534%2C535%2C536%2C537%2C538%2C539%2C540%2C541%2C542%2C543%2C544%2C545%2C546%2C547%2C548%2C549%2C550%2C551%2C552%2C553%2C554%2C555%2C556%2C557%2C558%2C559%2C560%2C561%2C562%2C563%2C564%2C565%2C566%2C567%2C568%2C569%2C570%2C571%2C572%2C573%2C574%2C575%2C576%2C577%2C578%2C579%2C580%2C581%2C582%2C583%2C584%2C585%2C586%2C587%2C588%2C589%2C590%2C591%2C592%2C593%2C594%2C595%2C596%2C597%2C598%2C599%2C600%2C601%2C602%2C603%2C604%2C605%2C606%2C607%2C608%2C609%2C610%2C611%2C612%2C613%2C614%2C615%2C616%2C617%2C618%2C619%2C620%2C621%2C622%2C623%2C624%2C625%2C626%2C627%2C628%2C629%2C630%2C631%2C632%2C633%2C634%2C635%2C636%2C637%2C638%2C639%2C640%2C641&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson"
+        ],
+        "sha256": "6ab608aa07e759580d53a1002e6239c14acfd5911ca9f011d17c236a921e8618",
+        "source_crs": {
+          "wkid": 4674,
+          "latestWkid": 4674,
+          "xyTolerance": 8.983152841195213e-09,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -400,
+          "falseY": -400,
+          "xyUnits": 11258999068426.24,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        },
+        "output_crs": "EPSG:4326",
+        "copyright": ""
+      }
+    },
+    "derivation": {
+      "domain_simplification_degrees": 0.0005,
+      "coordinate_decimals": 6,
+      "preserve_topology": true,
+      "geometry_repairs": [
+        {
+          "feature_id": 252,
+          "reason": "Ring Self-intersection[-35.277007005 -6.65736443078238]",
+          "relative_area_change": 6.956783742405795e-15,
+          "operation": "shapely.make_valid"
+        }
+      ],
+      "full_precision_fallback_feature_ids": [
+        251,
+        252
+      ],
+      "boundary_warning": "Regional map. Unit membership near boundaries needs field verification. Training and browser share the same derived geometry."
+    }
+  },
+  "buffers_km": [
+    0,
+    2,
+    5
+  ],
+  "distance_crs": "Local equirectangular approximation: lat0=-7.15, lon0=-36.5, 111.195 km/degree; identical in Python/browser; not survey distances",
+  "features": {
+    "cadastre": [
+      "latitude",
+      "longitude",
+      "depth_m"
+    ],
+    "geology": [
+      "latitude",
+      "longitude",
+      "depth_m",
+      "log_structure_distance",
+      "hydrolithological_domain (train-only one-hot)"
+    ],
+    "pre_drill": [
+      "latitude",
+      "longitude",
+      "log_structure_distance",
+      "hydrolithological_domain (train-only one-hot)"
+    ]
+  },
+  "fold_definition": "Same five 0.04-degree GroupKFold splits as v2.0; remove training points closer than each buffer to any held-out point",
+  "selection": "Settings, buffers and feature sets fixed before testing. No best-result selection. Deploy pre_drill because observed borehole depth is unavailable at new locations.",
+  "limitations": [
+    "Historical status, not dated drilling outcome",
+    "Regional structures are not verified water-bearing fractures",
+    "Uncalibrated scores; tree dispersion is a heuristic",
+    "No terrain variables, field geophysics or community reports in this training",
+    "No prospective validation or efficacy claim"
+  ],
+  "tasks": {
+    "potential": {
+      "n": 3022,
+      "unmapped": 4,
+      "multiple_domain_matches": 3,
+      "evaluations": [
+        {
+          "feature_set": "cadastre",
+          "buffer_km": 0,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 2417,
+              "test_n": 605,
+              "train_class_counts": [
+                281,
+                2136
+              ],
+              "minimum_train_test_km": 0.12353756350207769
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 2417,
+              "test_n": 605,
+              "train_class_counts": [
+                287,
+                2130
+              ],
+              "minimum_train_test_km": 0.12616476332906826
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                273,
+                2145
+              ],
+              "minimum_train_test_km": 0.12353756350207769
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                273,
+                2145
+              ],
+              "minimum_train_test_km": 0.03080099468058202
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                266,
+                2152
+              ],
+              "minimum_train_test_km": 0.03080099468058202
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.6896095301125083,
+            "balanced_accuracy": 0.6935039764391244,
+            "macro_f1": 0.5682909742190165,
+            "recall_class0": 0.6985507246376812,
+            "recall_class1": 0.6884572282405678,
+            "confusion_matrix": [
+              [
+                241,
+                104
+              ],
+              [
+                834,
+                1843
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "geology",
+          "buffer_km": 0,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 2417,
+              "test_n": 605,
+              "train_class_counts": [
+                281,
+                2136
+              ],
+              "minimum_train_test_km": 0.12353756350207769
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 2417,
+              "test_n": 605,
+              "train_class_counts": [
+                287,
+                2130
+              ],
+              "minimum_train_test_km": 0.12616476332906826
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                273,
+                2145
+              ],
+              "minimum_train_test_km": 0.12353756350207769
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                273,
+                2145
+              ],
+              "minimum_train_test_km": 0.03080099468058202
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                266,
+                2152
+              ],
+              "minimum_train_test_km": 0.03080099468058202
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.6922567835870285,
+            "balanced_accuracy": 0.6760606995717681,
+            "macro_f1": 0.5637885145844624,
+            "recall_class0": 0.6550724637681159,
+            "recall_class1": 0.6970489353754202,
+            "confusion_matrix": [
+              [
+                226,
+                119
+              ],
+              [
+                811,
+                1866
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "pre_drill",
+          "buffer_km": 0,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 2417,
+              "test_n": 605,
+              "train_class_counts": [
+                281,
+                2136
+              ],
+              "minimum_train_test_km": 0.12353756350207769
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 2417,
+              "test_n": 605,
+              "train_class_counts": [
+                287,
+                2130
+              ],
+              "minimum_train_test_km": 0.12616476332906826
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                273,
+                2145
+              ],
+              "minimum_train_test_km": 0.12353756350207769
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                273,
+                2145
+              ],
+              "minimum_train_test_km": 0.03080099468058202
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 2418,
+              "test_n": 604,
+              "train_class_counts": [
+                266,
+                2152
+              ],
+              "minimum_train_test_km": 0.03080099468058202
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.6621442753143614,
+            "balanced_accuracy": 0.6338140791389886,
+            "macro_f1": 0.53304085031047,
+            "recall_class0": 0.5971014492753624,
+            "recall_class1": 0.6705267090026149,
+            "confusion_matrix": [
+              [
+                206,
+                139
+              ],
+              [
+                882,
+                1795
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "cadastre",
+          "buffer_km": 2,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 2222,
+              "test_n": 605,
+              "train_class_counts": [
+                266,
+                1956
+              ],
+              "minimum_train_test_km": 2.0067029339103355
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 2243,
+              "test_n": 605,
+              "train_class_counts": [
+                273,
+                1970
+              ],
+              "minimum_train_test_km": 2.0054864943970414
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 2219,
+              "test_n": 604,
+              "train_class_counts": [
+                254,
+                1965
+              ],
+              "minimum_train_test_km": 2.0078586412127013
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 2190,
+              "test_n": 604,
+              "train_class_counts": [
+                248,
+                1942
+              ],
+              "minimum_train_test_km": 2.007522970036002
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 2243,
+              "test_n": 604,
+              "train_class_counts": [
+                250,
+                1993
+              ],
+              "minimum_train_test_km": 2.010866241188914
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.699867637326274,
+            "balanced_accuracy": 0.7030815373038173,
+            "macro_f1": 0.577362534510447,
+            "recall_class0": 0.7072463768115942,
+            "recall_class1": 0.6989166977960404,
+            "confusion_matrix": [
+              [
+                244,
+                101
+              ],
+              [
+                806,
+                1871
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "geology",
+          "buffer_km": 2,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 2222,
+              "test_n": 605,
+              "train_class_counts": [
+                266,
+                1956
+              ],
+              "minimum_train_test_km": 2.0067029339103355
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 2243,
+              "test_n": 605,
+              "train_class_counts": [
+                273,
+                1970
+              ],
+              "minimum_train_test_km": 2.0054864943970414
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 2219,
+              "test_n": 604,
+              "train_class_counts": [
+                254,
+                1965
+              ],
+              "minimum_train_test_km": 2.0078586412127013
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 2190,
+              "test_n": 604,
+              "train_class_counts": [
+                248,
+                1942
+              ],
+              "minimum_train_test_km": 2.007522970036002
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 2243,
+              "test_n": 604,
+              "train_class_counts": [
+                250,
+                1993
+              ],
+              "minimum_train_test_km": 2.010866241188914
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7021839841164792,
+            "balanced_accuracy": 0.6917639797956829,
+            "macro_f1": 0.5748165323488361,
+            "recall_class0": 0.6782608695652174,
+            "recall_class1": 0.7052670900261486,
+            "confusion_matrix": [
+              [
+                234,
+                111
+              ],
+              [
+                789,
+                1888
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "pre_drill",
+          "buffer_km": 2,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 2222,
+              "test_n": 605,
+              "train_class_counts": [
+                266,
+                1956
+              ],
+              "minimum_train_test_km": 2.0067029339103355
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 2243,
+              "test_n": 605,
+              "train_class_counts": [
+                273,
+                1970
+              ],
+              "minimum_train_test_km": 2.0054864943970414
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 2219,
+              "test_n": 604,
+              "train_class_counts": [
+                254,
+                1965
+              ],
+              "minimum_train_test_km": 2.0078586412127013
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 2190,
+              "test_n": 604,
+              "train_class_counts": [
+                248,
+                1942
+              ],
+              "minimum_train_test_km": 2.007522970036002
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 2243,
+              "test_n": 604,
+              "train_class_counts": [
+                250,
+                1993
+              ],
+              "minimum_train_test_km": 2.010866241188914
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.6661151555261416,
+            "balanced_accuracy": 0.6120679107588529,
+            "macro_f1": 0.5269747289976998,
+            "recall_class0": 0.5420289855072464,
+            "recall_class1": 0.6821068360104595,
+            "confusion_matrix": [
+              [
+                187,
+                158
+              ],
+              [
+                851,
+                1826
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "cadastre",
+          "buffer_km": 5,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 1417,
+              "test_n": 605,
+              "train_class_counts": [
+                192,
+                1225
+              ],
+              "minimum_train_test_km": 5.016110550584443
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 1385,
+              "test_n": 605,
+              "train_class_counts": [
+                184,
+                1201
+              ],
+              "minimum_train_test_km": 5.003975895892688
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 1374,
+              "test_n": 604,
+              "train_class_counts": [
+                172,
+                1202
+              ],
+              "minimum_train_test_km": 5.007152544943449
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 1437,
+              "test_n": 604,
+              "train_class_counts": [
+                185,
+                1252
+              ],
+              "minimum_train_test_km": 5.006923783565608
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 1447,
+              "test_n": 604,
+              "train_class_counts": [
+                167,
+                1280
+              ],
+              "minimum_train_test_km": 5.003550613955589
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.6945731303772337,
+            "balanced_accuracy": 0.6748431350256885,
+            "macro_f1": 0.5646255636497077,
+            "recall_class0": 0.6492753623188405,
+            "recall_class1": 0.7004109077325364,
+            "confusion_matrix": [
+              [
+                224,
+                121
+              ],
+              [
+                802,
+                1875
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "geology",
+          "buffer_km": 5,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 1417,
+              "test_n": 605,
+              "train_class_counts": [
+                192,
+                1225
+              ],
+              "minimum_train_test_km": 5.016110550584443
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 1385,
+              "test_n": 605,
+              "train_class_counts": [
+                184,
+                1201
+              ],
+              "minimum_train_test_km": 5.003975895892688
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 1374,
+              "test_n": 604,
+              "train_class_counts": [
+                172,
+                1202
+              ],
+              "minimum_train_test_km": 5.007152544943449
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 1437,
+              "test_n": 604,
+              "train_class_counts": [
+                185,
+                1252
+              ],
+              "minimum_train_test_km": 5.006923783565608
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 1447,
+              "test_n": 604,
+              "train_class_counts": [
+                167,
+                1280
+              ],
+              "minimum_train_test_km": 5.003550613955589
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7048312375909993,
+            "balanced_accuracy": 0.6591707134852447,
+            "macro_f1": 0.5643666889254194,
+            "recall_class0": 0.6,
+            "recall_class1": 0.7183414269704893,
+            "confusion_matrix": [
+              [
+                207,
+                138
+              ],
+              [
+                754,
+                1923
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "pre_drill",
+          "buffer_km": 5,
+          "tested_n": 3022,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 2417,
+              "train_n": 1417,
+              "test_n": 605,
+              "train_class_counts": [
+                192,
+                1225
+              ],
+              "minimum_train_test_km": 5.016110550584443
+            },
+            {
+              "fold": 2,
+              "train_before": 2417,
+              "train_n": 1385,
+              "test_n": 605,
+              "train_class_counts": [
+                184,
+                1201
+              ],
+              "minimum_train_test_km": 5.003975895892688
+            },
+            {
+              "fold": 3,
+              "train_before": 2418,
+              "train_n": 1374,
+              "test_n": 604,
+              "train_class_counts": [
+                172,
+                1202
+              ],
+              "minimum_train_test_km": 5.007152544943449
+            },
+            {
+              "fold": 4,
+              "train_before": 2418,
+              "train_n": 1437,
+              "test_n": 604,
+              "train_class_counts": [
+                185,
+                1252
+              ],
+              "minimum_train_test_km": 5.006923783565608
+            },
+            {
+              "fold": 5,
+              "train_before": 2418,
+              "train_n": 1447,
+              "test_n": 604,
+              "train_class_counts": [
+                167,
+                1280
+              ],
+              "minimum_train_test_km": 5.003550613955589
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.6985440105890139,
+            "balanced_accuracy": 0.5924970088732249,
+            "macro_f1": 0.5336415803092351,
+            "recall_class0": 0.45507246376811594,
+            "recall_class1": 0.7299215539783339,
+            "confusion_matrix": [
+              [
+                157,
+                188
+              ],
+              [
+                723,
+                1954
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "salinity": {
+      "n": 8234,
+      "unmapped": 13,
+      "multiple_domain_matches": 11,
+      "evaluations": [
+        {
+          "feature_set": "cadastre",
+          "buffer_km": 0,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4572,
+                2015
+              ],
+              "minimum_train_test_km": 0.04356742225323441
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4535,
+                2052
+              ],
+              "minimum_train_test_km": 0.04356742225323441
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4463,
+                2124
+              ],
+              "minimum_train_test_km": 0.09757056262600697
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4561,
+                2026
+              ],
+              "minimum_train_test_km": 0.06858698006038187
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 6588,
+              "test_n": 1646,
+              "train_class_counts": [
+                4521,
+                2067
+              ],
+              "minimum_train_test_km": 0.08701904110213779
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7120476074811756,
+            "balanced_accuracy": 0.7722887546221308,
+            "macro_f1": 0.7071296759132393,
+            "recall_class0": 0.6118665018541409,
+            "recall_class1": 0.9327110073901206,
+            "confusion_matrix": [
+              [
+                3465,
+                2198
+              ],
+              [
+                173,
+                2398
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "geology",
+          "buffer_km": 0,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4572,
+                2015
+              ],
+              "minimum_train_test_km": 0.04356742225323441
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4535,
+                2052
+              ],
+              "minimum_train_test_km": 0.04356742225323441
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4463,
+                2124
+              ],
+              "minimum_train_test_km": 0.09757056262600697
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4561,
+                2026
+              ],
+              "minimum_train_test_km": 0.06858698006038187
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 6588,
+              "test_n": 1646,
+              "train_class_counts": [
+                4521,
+                2067
+              ],
+              "minimum_train_test_km": 0.08701904110213779
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7093757590478503,
+            "balanced_accuracy": 0.7701339524174232,
+            "macro_f1": 0.7045809900409088,
+            "recall_class0": 0.6083348048737418,
+            "recall_class1": 0.9319330999611046,
+            "confusion_matrix": [
+              [
+                3445,
+                2218
+              ],
+              [
+                175,
+                2396
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "pre_drill",
+          "buffer_km": 0,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4572,
+                2015
+              ],
+              "minimum_train_test_km": 0.04356742225323441
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4535,
+                2052
+              ],
+              "minimum_train_test_km": 0.04356742225323441
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4463,
+                2124
+              ],
+              "minimum_train_test_km": 0.09757056262600697
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 6587,
+              "test_n": 1647,
+              "train_class_counts": [
+                4561,
+                2026
+              ],
+              "minimum_train_test_km": 0.06858698006038187
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 6588,
+              "test_n": 1646,
+              "train_class_counts": [
+                4521,
+                2067
+              ],
+              "minimum_train_test_km": 0.08701904110213779
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.713747874666019,
+            "balanced_accuracy": 0.7726753731033184,
+            "macro_f1": 0.7085751651688218,
+            "recall_class0": 0.61575136853258,
+            "recall_class1": 0.9295993776740568,
+            "confusion_matrix": [
+              [
+                3487,
+                2176
+              ],
+              [
+                181,
+                2390
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "cadastre",
+          "buffer_km": 2,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 5612,
+              "test_n": 1647,
+              "train_class_counts": [
+                3883,
+                1729
+              ],
+              "minimum_train_test_km": 2.0015058344135706
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 5479,
+              "test_n": 1647,
+              "train_class_counts": [
+                3685,
+                1794
+              ],
+              "minimum_train_test_km": 2.000226877967816
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 5598,
+              "test_n": 1647,
+              "train_class_counts": [
+                3714,
+                1884
+              ],
+              "minimum_train_test_km": 2.0008750903150454
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 5628,
+              "test_n": 1647,
+              "train_class_counts": [
+                3865,
+                1763
+              ],
+              "minimum_train_test_km": 2.0011565957158384
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 5577,
+              "test_n": 1646,
+              "train_class_counts": [
+                3784,
+                1793
+              ],
+              "minimum_train_test_km": 2.0011565957158384
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.713262084041778,
+            "balanced_accuracy": 0.7707294369141183,
+            "macro_f1": 0.7078273621029496,
+            "recall_class0": 0.6176938018717995,
+            "recall_class1": 0.9237650719564372,
+            "confusion_matrix": [
+              [
+                3498,
+                2165
+              ],
+              [
+                196,
+                2375
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "geology",
+          "buffer_km": 2,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 5612,
+              "test_n": 1647,
+              "train_class_counts": [
+                3883,
+                1729
+              ],
+              "minimum_train_test_km": 2.0015058344135706
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 5479,
+              "test_n": 1647,
+              "train_class_counts": [
+                3685,
+                1794
+              ],
+              "minimum_train_test_km": 2.000226877967816
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 5598,
+              "test_n": 1647,
+              "train_class_counts": [
+                3714,
+                1884
+              ],
+              "minimum_train_test_km": 2.0008750903150454
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 5628,
+              "test_n": 1647,
+              "train_class_counts": [
+                3865,
+                1763
+              ],
+              "minimum_train_test_km": 2.0011565957158384
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 5577,
+              "test_n": 1646,
+              "train_class_counts": [
+                3784,
+                1793
+              ],
+              "minimum_train_test_km": 2.0011565957158384
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7093757590478503,
+            "balanced_accuracy": 0.7650370996457108,
+            "macro_f1": 0.7036451431919071,
+            "recall_class0": 0.6168108776266996,
+            "recall_class1": 0.9132633216647219,
+            "confusion_matrix": [
+              [
+                3493,
+                2170
+              ],
+              [
+                223,
+                2348
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "pre_drill",
+          "buffer_km": 2,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 5612,
+              "test_n": 1647,
+              "train_class_counts": [
+                3883,
+                1729
+              ],
+              "minimum_train_test_km": 2.0015058344135706
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 5479,
+              "test_n": 1647,
+              "train_class_counts": [
+                3685,
+                1794
+              ],
+              "minimum_train_test_km": 2.000226877967816
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 5598,
+              "test_n": 1647,
+              "train_class_counts": [
+                3714,
+                1884
+              ],
+              "minimum_train_test_km": 2.0008750903150454
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 5628,
+              "test_n": 1647,
+              "train_class_counts": [
+                3865,
+                1763
+              ],
+              "minimum_train_test_km": 2.0011565957158384
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 5577,
+              "test_n": 1646,
+              "train_class_counts": [
+                3784,
+                1793
+              ],
+              "minimum_train_test_km": 2.0011565957158384
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7159339324751033,
+            "balanced_accuracy": 0.7692739684055294,
+            "macro_f1": 0.7096747783950377,
+            "recall_class0": 0.6272293837188769,
+            "recall_class1": 0.911318553092182,
+            "confusion_matrix": [
+              [
+                3552,
+                2111
+              ],
+              [
+                228,
+                2343
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "cadastre",
+          "buffer_km": 5,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 2625,
+              "test_n": 1647,
+              "train_class_counts": [
+                1872,
+                753
+              ],
+              "minimum_train_test_km": 5.000476252597176
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 2645,
+              "test_n": 1647,
+              "train_class_counts": [
+                1736,
+                909
+              ],
+              "minimum_train_test_km": 5.000170715179639
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 2723,
+              "test_n": 1647,
+              "train_class_counts": [
+                1765,
+                958
+              ],
+              "minimum_train_test_km": 5.002254621707302
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 2901,
+              "test_n": 1647,
+              "train_class_counts": [
+                2000,
+                901
+              ],
+              "minimum_train_test_km": 5.000170715179639
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 2781,
+              "test_n": 1646,
+              "train_class_counts": [
+                1905,
+                876
+              ],
+              "minimum_train_test_km": 5.001291366543829
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7154481418508623,
+            "balanced_accuracy": 0.7684960609765135,
+            "macro_f1": 0.709135805395138,
+            "recall_class0": 0.6272293837188769,
+            "recall_class1": 0.9097627382341501,
+            "confusion_matrix": [
+              [
+                3552,
+                2111
+              ],
+              [
+                232,
+                2339
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "geology",
+          "buffer_km": 5,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 2625,
+              "test_n": 1647,
+              "train_class_counts": [
+                1872,
+                753
+              ],
+              "minimum_train_test_km": 5.000476252597176
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 2645,
+              "test_n": 1647,
+              "train_class_counts": [
+                1736,
+                909
+              ],
+              "minimum_train_test_km": 5.000170715179639
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 2723,
+              "test_n": 1647,
+              "train_class_counts": [
+                1765,
+                958
+              ],
+              "minimum_train_test_km": 5.002254621707302
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 2901,
+              "test_n": 1647,
+              "train_class_counts": [
+                2000,
+                901
+              ],
+              "minimum_train_test_km": 5.000170715179639
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 2781,
+              "test_n": 1646,
+              "train_class_counts": [
+                1905,
+                876
+              ],
+              "minimum_train_test_km": 5.001291366543829
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7120476074811756,
+            "balanced_accuracy": 0.7631568934061459,
+            "macro_f1": 0.7053766519147342,
+            "recall_class0": 0.627052798869857,
+            "recall_class1": 0.8992609879424348,
+            "confusion_matrix": [
+              [
+                3551,
+                2112
+              ],
+              [
+                259,
+                2312
+              ]
+            ]
+          }
+        },
+        {
+          "feature_set": "pre_drill",
+          "buffer_km": 5,
+          "tested_n": 8234,
+          "coverage": 1.0,
+          "folds": [
+            {
+              "fold": 1,
+              "train_before": 6587,
+              "train_n": 2625,
+              "test_n": 1647,
+              "train_class_counts": [
+                1872,
+                753
+              ],
+              "minimum_train_test_km": 5.000476252597176
+            },
+            {
+              "fold": 2,
+              "train_before": 6587,
+              "train_n": 2645,
+              "test_n": 1647,
+              "train_class_counts": [
+                1736,
+                909
+              ],
+              "minimum_train_test_km": 5.000170715179639
+            },
+            {
+              "fold": 3,
+              "train_before": 6587,
+              "train_n": 2723,
+              "test_n": 1647,
+              "train_class_counts": [
+                1765,
+                958
+              ],
+              "minimum_train_test_km": 5.002254621707302
+            },
+            {
+              "fold": 4,
+              "train_before": 6587,
+              "train_n": 2901,
+              "test_n": 1647,
+              "train_class_counts": [
+                2000,
+                901
+              ],
+              "minimum_train_test_km": 5.000170715179639
+            },
+            {
+              "fold": 5,
+              "train_before": 6588,
+              "train_n": 2781,
+              "test_n": 1646,
+              "train_class_counts": [
+                1905,
+                876
+              ],
+              "minimum_train_test_km": 5.001291366543829
+            }
+          ],
+          "metrics": {
+            "accuracy": 0.7182414379402478,
+            "balanced_accuracy": 0.7685092825181068,
+            "macro_f1": 0.7113308091431776,
+            "recall_class0": 0.634645947377715,
+            "recall_class1": 0.9023726176584986,
+            "confusion_matrix": [
+              [
+                3594,
+                2069
+              ],
+              [
+                251,
+                2320
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

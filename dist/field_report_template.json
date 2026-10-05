@@ -1,0 +1,16 @@
+{
+  "record_id": null,
+  "site_id": null,
+  "source_kind": null,
+  "evidence_reference": null,
+  "review_status": "pending",
+  "measurement_date": null,
+  "latitude": null,
+  "longitude": null,
+  "coordinate_accuracy_m": null,
+  "production_test": {"method": null, "outcome": null, "flow_m3_h": null, "duration_h": null, "static_level_m": null, "dynamic_level_m": null, "recovery_test_reference": null},
+  "water": {"ec25_us_cm": null, "temperature_c": null, "tds_lab_mg_l": null, "instrument_calibration_reference": null, "laboratory_reference": null, "selected_use": null, "criteria_reference": null},
+  "treatment": {"feed_m3": null, "permeate_m3": null, "concentrate_m3": null, "energy_kwh": null, "laboratory_reference": null},
+  "community_aggregate": {"code": null, "households": null, "supply_interruption_days_last_30": null, "collection_time_min": null, "water_cost_brl_m3": null, "irrigated_area_ha": null, "collection_method": null},
+  "notes_without_personal_identifiers": null
+}
