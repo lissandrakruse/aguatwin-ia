@@ -12,7 +12,20 @@ Protótipo de pesquisa aplicada para investigar poços na Paraíba, comparar cin
 - Cenários diários de água, osmose reversa, reservatório, irrigação e limite de energia solar.
 - Download dos dados, previsões de validação e código do treino.
 
-## Dados e resultados iniciais
+## Resultados do manuscrito para a Revista Caatinga
+
+O manuscrito em preparação, **Triagem de poços para irrigação na Paraíba por aprendizado de máquina e validação espacial**, utiliza o Random Forest geológico da v2.1, configuração `pre_drill`, sem profundidade observada e com isolamento principal de **5 km**.
+
+| Tarefa | Registros | Acurácia balanceada | F1 macro |
+|---|---:|---:|---:|
+| Produção cadastrada × seco | 3.022 | 59,2% | 0,534 |
+| CE > 3 dS m⁻¹ | 8.234 | 76,9% | 0,711 |
+
+Esses resultados classificam registros históricos e não demonstram aptidão para irrigação ou desempenho de novas perfurações. NASA POWER, CNN e os demais modelos do protótipo não integram esse experimento do artigo. O manuscrito não foi declarado aceito ou publicado.
+
+Veja a [correspondência entre manuscrito, código e resultados](docs/MANUSCRITO_CAATINGA.md), incluindo matrizes, tamanhos de treinamento e reprodução. O PDF piloto v1.1 é histórico e não representa este manuscrito.
+
+## Dados e resultados iniciais — comparação histórica v2.0
 
 Consulta pública SGB/SIAGAS em **04/10/2026**, com duas amostras:
 
